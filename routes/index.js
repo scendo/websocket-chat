@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/user");
+const authController = require("../controllers/auth");
 
 router.get("/", (req, res) => {
   res.send("Hello From Chat App");
@@ -15,8 +16,6 @@ router.post(
   userController.register
 );
 
-router.post("/api/v1/login", (req, res) => {
-  res.send("Logging user in...");
-});
+router.post("/api/v1/login", authController.login);
 
 module.exports = router;
