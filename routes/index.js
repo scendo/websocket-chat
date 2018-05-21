@@ -15,4 +15,8 @@ router.post(
   userController.register
 );
 
+router.post("/api/v1/login", (req, res) => {
+  res.send("Logging user in...");
+});
+
 module.exports = router;
