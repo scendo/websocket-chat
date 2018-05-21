@@ -11,6 +11,8 @@ mongoose.connection.on("error", err => {
   console.error(`Mongoose Error: ${err.message}`);
 });
 
+require("./models/User");
+
 // Start our app!
 const app = require("./app");
 app.set("port", config.PORT || 7777);
