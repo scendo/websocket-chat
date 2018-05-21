@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const promisify = require("es6-promisify");
+const bcrypt = require("bcrypt");
 const { check, body, validationResult } = require("express-validator/check");
 
 /**
@@ -47,6 +48,39 @@ exports.validateRegister = (req, res, next) => {
     res.status("500").json(errors);
     return;
   }
+  next();
+};
 
-  res.send("register success!");
+/**
+ * Register/Create a new user
+ *
+ * Creates a new user if user does not exist.
+ * Salts and hashes the password before inserting model
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+exports.register = async (req, res) => {
+  const errors = {};
+  const user = await User.findOne({ email: req.body.email });
+
+  if (user) {
+    errors.email = "Email already exists";
+    return res.status(400).json(errors);
+  }
+
+  //salt and hash the password
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(req.body.password, salt);
+
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: hash
+  });
+
+  if (newUser) {
+    res.status(200);
+  }
+  res.status(500);
 };

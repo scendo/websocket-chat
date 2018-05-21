@@ -9,6 +9,10 @@ router.get("/", (req, res) => {
 /**
  * API
  */
-router.post("/api/v1/register", userController.validateRegister);
+router.post(
+  "/api/v1/register",
+  userController.validateRegister,
+  userController.register
+);
 
 module.exports = router;
