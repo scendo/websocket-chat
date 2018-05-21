@@ -1,6 +1,15 @@
+const mongoose = require("mongoose");
+
 // import environmental variables from our variables.env file
 require("dotenv").config({ path: "variables.env" });
 const config = require("./config/application");
+
+// Connect to our Database and handle an bad connections
+mongoose.connect(process.env.DATABASE);
+mongoose.Promise = global.Promise;
+mongoose.connection.on("error", err => {
+  console.error(`Mongoose Error: ${err.message}`);
+});
 
 // Start our app!
 const app = require("./app");
