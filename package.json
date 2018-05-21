@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node ./server.js",
     "watch": "nodemon ./server.js --ignore public/",
-    "dev": "concurrently \"npm run watch\""
+    "dev": "concurrently \"npm run watch\"",
+    "load-sample-data": "node ./sample-data/load.js",
+    "delete-sample-data": "node ./sample-data/load.js --delete"
   },
   "browserslist": "last 2 versions",
   "dependencies": {
