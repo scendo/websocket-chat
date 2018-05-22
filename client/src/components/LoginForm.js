@@ -19,12 +19,19 @@ class LoginForm extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
     const { name, value } = e.target;
 
     this.setState({ [name]: value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    console.log("Submit Login Form", this.state);
   }
 
   render() {
@@ -48,6 +55,7 @@ class LoginForm extends Component {
                   iconPosition="left"
                   placeholder="E-mail address"
                   onChange={this.handleInputChange}
+                  value={this.state.email}
                 />
                 <Form.Input
                   name="password"
@@ -57,8 +65,14 @@ class LoginForm extends Component {
                   placeholder="Password"
                   type="password"
                   onChange={this.handleInputChange}
+                  value={this.state.password}
                 />
-                <Button color="teal" fluid size="large">
+                <Button
+                  color="teal"
+                  fluid
+                  size="large"
+                  onClick={this.handleSubmit}
+                >
                   Login
                 </Button>
               </Segment>
