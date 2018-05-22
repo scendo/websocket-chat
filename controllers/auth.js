@@ -36,7 +36,6 @@ exports.login = async (req, res) => {
       expiresIn: 3600
     });
     res.json({
-      success: true,
       token: "Bearer " + token
     });
   } else {

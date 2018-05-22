@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   Button,
   Form,
@@ -12,7 +13,6 @@ import { Link } from "react-router-dom";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: "",
       password: ""
@@ -30,8 +30,7 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    console.log("Submit Login Form", this.state);
+    const { email, password } = this.state;
   }
 
   render() {
@@ -87,4 +86,8 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, {})(LoginForm);
