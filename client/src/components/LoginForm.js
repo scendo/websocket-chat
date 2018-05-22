@@ -12,6 +12,19 @@ import { Link } from "react-router-dom";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      email: "",
+      password: ""
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    const { name, value } = e.target;
+
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -34,6 +47,7 @@ class LoginForm extends Component {
                   icon="user"
                   iconPosition="left"
                   placeholder="E-mail address"
+                  onChange={this.handleInputChange}
                 />
                 <Form.Input
                   name="password"
@@ -42,6 +56,7 @@ class LoginForm extends Component {
                   iconPosition="left"
                   placeholder="Password"
                   type="password"
+                  onChange={this.handleInputChange}
                 />
                 <Button color="teal" fluid size="large">
                   Login
