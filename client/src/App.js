@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import createHistory from "history/createBrowserHistory";
 import { Router } from "react-router";
 import { Route } from "react-router-dom";
-import "./App.css";
+
+//Components
+import LoginForm from "./components/LoginForm";
 
 const history = createHistory();
 
@@ -13,21 +17,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Route
-            exact
-            path="/"
-            render={props => {
-              const { match, location, history } = props;
-
-              return (
-                <div className="App">
-                  <header className="App-header">
-                    <h1 className="App-title">Websocket Chat Application</h1>
-                  </header>
-                </div>
-              );
-            }}
-          />
+          <Route exact path="/" component={LoginForm} />
         </Router>
       </Provider>
     );
