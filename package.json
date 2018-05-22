@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node ./server.js",
     "watch": "nodemon ./server.js --ignore public/",
-    "dev": "concurrently \"npm run watch\"",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run watch\" \"npm run client\"",
     "load-sample-data": "node ./sample-data/load.js",
     "delete-sample-data": "node ./sample-data/load.js --delete"
   },
