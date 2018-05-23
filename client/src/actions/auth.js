@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { USER_LOGGED_IN } from "./types";
 /**
  * Log the user in
  *
@@ -13,6 +13,9 @@ export const loginUser = (email, password) => dispatch => {
     .post("/api/v1/login", { email, password })
     .then(response => {
       console.log(response.data);
+      dispatch({
+        type: USER_LOGGED_IN
+      });
     })
     .catch(error => {
       console.log(error.response);

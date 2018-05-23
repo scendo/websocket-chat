@@ -9,6 +9,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { loginUser } from "../actions/auth";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ class LoginForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
+
+    this.props.loginUser(email, password);
   }
 
   render() {
@@ -90,4 +93,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(LoginForm);
+export default connect(mapStateToProps, { loginUser })(LoginForm);
