@@ -12,7 +12,10 @@ export const loginUser = (email, password) => dispatch => {
   axios
     .post("/api/v1/login", { email, password })
     .then(response => {
-      console.log(response.data);
+      const { token } = response.data;
+      // Set token to ls
+      localStorage.setItem("jwtToken", token);
+
       dispatch({
         type: USER_LOGGED_IN
       });
