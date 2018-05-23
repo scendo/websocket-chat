@@ -14,6 +14,7 @@ import { loginUser } from "../actions/auth";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       email: "",
       password: ""
@@ -21,6 +22,18 @@ class LoginForm extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/chatroom");
+    }
+  }
+
+  componentWillReceiveProps(nextProps, prevState) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/chatroom");
+    }
   }
 
   handleInputChange(e) {
