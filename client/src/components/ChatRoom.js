@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Navbar from "./Navbar";
 
 class Chatroom extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Chatroom extends Component {
   render() {
     return (
       <div id="chatroom">
+        <Navbar />
         <h1>Chatroom</h1>
       </div>
     );
