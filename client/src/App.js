@@ -4,13 +4,14 @@ import "semantic-ui-css/semantic.min.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import createHistory from "history/createBrowserHistory";
-import { Router } from "react-router";
+import { Switch, Router } from "react-router";
 import { Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
-//Components
+//Component
 import LoginForm from "./components/LoginForm";
 import ChatRoom from "./components/ChatRoom";
+import PrivateRoute from "./components/PrivateRoute";
 
 const history = createHistory();
 
@@ -35,7 +36,9 @@ class App extends Component {
         <Router history={history}>
           <div className="App">
             <Route exact path="/" component={LoginForm} />
-            <Route exact path="/chatroom" component={ChatRoom} />
+            <Switch>
+              <PrivateRoute exact path="/chatroom" component={ChatRoom} />
+            </Switch>
           </div>
         </Router>
       </Provider>
