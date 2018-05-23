@@ -1,4 +1,4 @@
-import { USER_LOGGED_IN, SET_CURRENT_USER } from "../actions/types";
+import { USER_LOGGED_IN, SET_CURRENT_USER, ROOM_OPEN } from "../actions/types";
 
 const defaultState = {
   isAuthenticated: false,
@@ -13,6 +13,17 @@ export default function(state = defaultState, action) {
         ...state,
         isAuthenticated: Object.keys(action.payload).length ? true : false,
         user: action.payload
+      };
+
+    case ROOM_OPEN:
+      const { socket } = action.payload;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          socket
+        }
       };
     default:
       return state;
