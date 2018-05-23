@@ -36,7 +36,11 @@ class Chatroom extends Component {
   initSocket() {
     const socket = io("http://localhost:7777");
 
-    socket.emit("CHAT_SERVICE_START");
+    socket.on("connect", () => {
+      socket.emit("CHAT_SERVICE_START", {
+        currentUserId: this.props.auth.user.id
+      });
+    });
 
     return socket;
   }
