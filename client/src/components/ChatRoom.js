@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import io from "socket.io-client";
 import {
   Sidebar,
   Segment,
@@ -24,6 +25,20 @@ class Chatroom extends Component {
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.props.socket) {
+      const socket = this.initSocket();
+    }
+  }
+
+  initSocket() {
+    const socket = io("http://localhost:7777");
+
+    socket.emit("CHAT_SERVICE_START");
+
+    return socket;
   }
 
   handleMenuClick() {

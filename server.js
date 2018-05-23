@@ -19,3 +19,11 @@ app.set("port", config.PORT || 7777);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+const socketio = require("socket.io");
+const chatService = require("./lib/chatService");
+const io = socketio(server);
+
+io.on("connection", socket => {
+  chatService(io, socket);
+});
