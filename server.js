@@ -11,6 +11,7 @@ mongoose.connection.on("error", err => {
   console.error(`Mongoose Error: ${err.message}`);
 });
 
+require("./models/Message");
 require("./models/User");
 
 // Start our app!
