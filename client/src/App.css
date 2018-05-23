@@ -7,3 +7,16 @@ body > div > div > div.login-form {
   height: 350px;
   overflow-y: scroll;
 }
+/* Chatroom - Header */
+#room-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f2f2f2;
+}
+#room-header #room-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+#room-header .room-setting-icon {
+  /* float:right; */
+  padding-left: 25px;
+}

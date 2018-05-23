@@ -11,6 +11,7 @@ import {
   Grid
 } from "semantic-ui-react";
 import Navbar from "./Navbar";
+import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
 import ChatWindow from "./ChatWindow";
 
@@ -50,7 +51,7 @@ class Chatroom extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <h1>Chatroom</h1>
+              <ChatHeader />
               <ChatWindow />
             </Segment>
           </Sidebar.Pusher>
