@@ -1,4 +1,4 @@
-import { USER_LOGGED_IN } from "../actions/types";
+import { USER_LOGGED_IN, SET_CURRENT_USER } from "../actions/types";
 
 const defaultState = {
   isAuthenticated: false,
@@ -8,6 +8,7 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case USER_LOGGED_IN:
+    case SET_CURRENT_USER:
       return {
         ...state,
         isAuthenticated: true,

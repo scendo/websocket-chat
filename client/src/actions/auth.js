@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { USER_LOGGED_IN } from "./types";
+import { USER_LOGGED_IN, SET_CURRENT_USER } from "./types";
 /**
  * Log the user in
  *
@@ -18,14 +18,21 @@ export const loginUser = (email, password) => dispatch => {
       localStorage.setItem("jwtToken", token);
 
       // Decode token to get user data
-      const decoded = jwt_decode(token);
+      const jwtDecoded = jwt_decode(token);
 
       dispatch({
         type: USER_LOGGED_IN,
-        payload: decoded
+        payload: jwtDecoded
       });
     })
     .catch(error => {
       console.log(error.response);
     });
+};
+
+export const setCurrentUser = user => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: user
+  };
 };
