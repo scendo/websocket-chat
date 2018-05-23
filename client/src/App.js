@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
 //Components
 import LoginForm from "./components/LoginForm";
+import ChatRoom from "./components/ChatRoom";
 
 const history = createHistory();
 
@@ -32,7 +33,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Route exact path="/" component={LoginForm} />
+          <div className="App">
+            <Route exact path="/" component={LoginForm} />
+            <Route exact path="/chatroom" component={ChatRoom} />
+          </div>
         </Router>
       </Provider>
     );
