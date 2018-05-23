@@ -11,6 +11,7 @@ import {
   Form,
   Grid
 } from "semantic-ui-react";
+import { openChatRoom } from "../actions/chat";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
@@ -37,9 +38,14 @@ class Chatroom extends Component {
     const socket = io("http://localhost:7777");
 
     socket.on("connect", () => {
-      socket.emit("CHAT_SERVICE_START", {
-        currentUserId: this.props.auth.user.id
-      });
+      socket.emit(
+        "CHAT_SERVICE_START",
+        { currentUserId: this.props.auth.user.id },
+        response => {
+          const options = { socket, ...response.data };
+          this.props.openChatRoom(options);
+        }
+      );
     });
 
     return socket;
@@ -83,4 +89,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(Chatroom);
+export default connect(mapStateToProps, { openChatRoom })(Chatroom);
