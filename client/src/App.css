@@ -3,3 +3,7 @@ body > div > div,
 body > div > div > div.login-form {
   height: 100%;
 }
+#chat-window {
+  height: 350px;
+  overflow-y: scroll;
+}
