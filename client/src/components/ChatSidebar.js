@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Menu } from "semantic-ui-react";
+import { logoutUser } from "../actions/auth";
 
 class ChatSidebar extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   handleLogoutClick(e) {
     e.preventDefault();
 
-    console.log("logout");
+    this.props.logoutUser();
   }
 
   render() {
@@ -28,4 +30,8 @@ class ChatSidebar extends Component {
     );
   }
 }
-export default ChatSidebar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser })(ChatSidebar);
