@@ -58,7 +58,7 @@ class Chatroom extends Component {
 
   render() {
     const { menuVisible } = this.state;
-    const { activeRoom, users, messages, rooms } = this.props;
+    const { currentUser, activeRoom, users, messages, rooms } = this.props;
 
     return (
       <div id="chatroom">
@@ -79,7 +79,7 @@ class Chatroom extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <ChatHeader activeRoom={activeRoom} />
-              <ChatWindow users={users} messages={messages} />
+              <ChatWindow {...this.props} />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -90,6 +90,7 @@ class Chatroom extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   currentUser: state.auth.user,
+  socket: state.socket,
   users: state.users,
   rooms: state.rooms,
   activeRoom: state.activeRoom,

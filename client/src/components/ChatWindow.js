@@ -18,6 +18,20 @@ class ChatWindow extends Component {
     if (this.state.input.length > 0 && e.key === "Enter") {
       e.preventDefault();
 
+      const { socket, activeRoom, currentUser } = this.props;
+
+      socket.emit(
+        "MESSAGE_ADD",
+        {
+          room: activeRoom,
+          userId: currentUser.id,
+          input: this.state.input
+        },
+        response => {
+          console.log(response);
+        }
+      );
+
       this.setState({
         input: ""
       });
@@ -29,10 +43,9 @@ class ChatWindow extends Component {
 
     return (
       <div>
-        <div id="chat-window" >
+        <div id="chat-window">
           <List id="messages">
             {Object.values(messages).map((message, index) => {
-      
               const timeStamp = new Date(message.created).toLocaleTimeString(
                 "en-US",
                 {
@@ -48,7 +61,9 @@ class ChatWindow extends Component {
                       <span className="room-message-username">
                         {users[message.user].name}
                       </span>
-                      <span className="room-message-timestamp">{timeStamp}</span>
+                      <span className="room-message-timestamp">
+                        {timeStamp}
+                      </span>
                     </List.Header>
                     <List.Content>{message.value}</List.Content>
                   </List.Item>
@@ -58,14 +73,14 @@ class ChatWindow extends Component {
           </List>
         </div>
         <Form.Input
-              id="m"
-              name="message"
-              autoComplete="off"
-              fluid
-              onChange={this.onInputChange}
-              onKeyPress={this.handleMessageSubmit}
-              value={this.state.input}
-            />
+          id="m"
+          name="message"
+          autoComplete="off"
+          fluid
+          onChange={this.onInputChange}
+          onKeyPress={this.handleMessageSubmit}
+          value={this.state.input}
+        />
       </div>
     );
   }
