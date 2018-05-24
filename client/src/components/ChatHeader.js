@@ -6,9 +6,10 @@ class ChatHeader extends Component {
   }
 
   render() {
+    const { activeRoom } = this.props;
     return (
       <div id="room-header">
-        <span id="room-name">#Community</span>
+        <span id="room-name">#{activeRoom.name}</span>
       </div>
     );
   }
