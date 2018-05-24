@@ -22,7 +22,7 @@ export default function(state = defaultState, action) {
         ...state,
         user: {
           ...state.user,
-          socket
+          socketId: socket.id
         }
       };
     default:
