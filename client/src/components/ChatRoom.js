@@ -58,7 +58,7 @@ class Chatroom extends Component {
 
   render() {
     const { menuVisible } = this.state;
-
+    const { activeRoom } = this.props;
     return (
       <div id="chatroom">
         <Navbar handleMenuClick={this.handleMenuClick} />
@@ -77,7 +77,7 @@ class Chatroom extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <ChatHeader />
+              <ChatHeader activeRoom={activeRoom} />
               <ChatWindow />
             </Segment>
           </Sidebar.Pusher>
@@ -87,7 +87,12 @@ class Chatroom extends Component {
   }
 }
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  currentUser: state.auth.user,
+  users: state.users,
+  rooms: state.rooms,
+  activeRoom: state.activeRoom,
+  messages: state.messages
 });
 
 export default connect(mapStateToProps, { openChatRoom })(Chatroom);
