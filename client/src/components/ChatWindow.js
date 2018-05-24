@@ -10,6 +10,14 @@ class ChatWindow extends Component {
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.scrollToBottomOfChat();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottomOfChat();
+  }
+
   onInputChange(e) {
     this.setState({ input: e.target.value });
   }
@@ -39,6 +47,14 @@ class ChatWindow extends Component {
         input: ""
       });
     }
+  }
+
+  /**
+   * Instantly scroll to the bottom of the ChatWindow
+   *
+   */
+  scrollToBottomOfChat() {
+    this.messageListBottom.scrollIntoView({ behavior: "instant" });
   }
 
   render() {
@@ -73,6 +89,7 @@ class ChatWindow extends Component {
                 </React.Fragment>
               );
             })}
+            <div ref={el => (this.messageListBottom = el)} />
           </List>
         </div>
         <Form.Input
