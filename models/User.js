@@ -41,8 +41,8 @@ const userSchema = new Schema({
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 userSchema.plugin(mongodbErrorHandler);
 
-userSchema.virtual("id").get(function() {
-  return this._id.toHexString();
+userSchema.set("toJSON", {
+  virtuals: true
 });
 
 module.exports = mongoose.model("User", userSchema);

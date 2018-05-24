@@ -25,11 +25,6 @@ const messageSchema = new Schema({
   }
 });
 
-// Duplicate the ID field.
-messageSchema.virtual("id").get(function() {
-  return this._id.toHexString();
-});
-
 // Ensure virtual fields are serialised.
 messageSchema.set("toJSON", {
   virtuals: true

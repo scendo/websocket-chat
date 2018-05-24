@@ -43,6 +43,7 @@ class Chatroom extends Component {
         { currentUserId: this.props.auth.user.id },
         response => {
           const options = { socket, ...response.data };
+          console.log(response, options);
           this.props.openChatRoom(options);
         }
       );
