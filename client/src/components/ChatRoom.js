@@ -11,7 +11,7 @@ import {
   Form,
   Grid
 } from "semantic-ui-react";
-import { openChatRoom } from "../actions/chat";
+import { openChatRoom, addMessageToRoom } from "../actions/chat";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
@@ -97,4 +97,6 @@ const mapStateToProps = state => ({
   messages: state.messages
 });
 
-export default connect(mapStateToProps, { openChatRoom })(Chatroom);
+export default connect(mapStateToProps, { openChatRoom, addMessageToRoom })(
+  Chatroom
+);

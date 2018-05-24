@@ -18,7 +18,7 @@ class ChatWindow extends Component {
     if (this.state.input.length > 0 && e.key === "Enter") {
       e.preventDefault();
 
-      const { socket, activeRoom, currentUser } = this.props;
+      const { socket, activeRoom, currentUser, addMessageToRoom } = this.props;
 
       socket.emit(
         "MESSAGE_ADD",
@@ -28,7 +28,10 @@ class ChatWindow extends Component {
           input: this.state.input
         },
         response => {
-          console.log(response);
+          if (response.success) {
+            const { room, message } = response.data;
+            addMessageToRoom(room, message);
+          }
         }
       );
 
