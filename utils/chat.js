@@ -37,7 +37,14 @@ initChatService = async ({ socketId, currentUserId }) => {
   ]).catch(e => console.log(e));
 
   //Fetch all of the chat data for the client
-  const allUsersPromise = User.find();
+  const allUsersPromise = User.find(
+    {},
+    {
+      rooms: 1,
+      name: 1,
+      socketId: 1
+    }
+  );
   const roomsPromise = Room.find({
     _id: { $in: [defaultRoom.id, ...currentUser.rooms] }
   });
