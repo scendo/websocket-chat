@@ -43,7 +43,7 @@ class Chatroom extends Component {
         { currentUserId: this.props.auth.user.id },
         response => {
           const options = { socket, ...response.data };
-          console.log(response, options);
+
           this.props.openChatRoom(options);
         }
       );
@@ -58,7 +58,7 @@ class Chatroom extends Component {
 
   render() {
     const { menuVisible } = this.state;
-    const { activeRoom } = this.props;
+    const { activeRoom, users, messages } = this.props;
     return (
       <div id="chatroom">
         <Navbar handleMenuClick={this.handleMenuClick} />
@@ -78,7 +78,7 @@ class Chatroom extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <ChatHeader activeRoom={activeRoom} />
-              <ChatWindow />
+              <ChatWindow users={users} messages={messages} />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
