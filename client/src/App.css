@@ -20,3 +20,36 @@ body > div > div > div.login-form {
   /* float:right; */
   padding-left: 25px;
 }
+
+/* Chatroom - Sidebar */
+#chat-sidebar.ui.vertical.menu .header,
+/* Category: Channls, Direct Messages */
+#chat-sidebar.ui.vertical.menu .item>.header:not(.ui) {
+  text-align: left;
+  font-size: 1.5em;
+}
+/* Category Sub items */
+#chat-sidebar.ui.vertical.menu .menu .item {
+  text-align: left;
+  font-size: 1em;
+}
+#chat-sidebar.ui.labeled.icon.menu .item > .icon:not(.dropdown) {
+  font-size: 12px !important;
+  float: left;
+}
+
+/* Chatroom - Window */
+#messages .room-message {
+  padding: 5px 0;
+}
+.room-message .room-message-username {
+  color: #2c2d30;
+  font-size: 16px;
+  font-weight: 700;
+}
+.room-message .room-message-timestamp {
+  color: #8f9092;
+  font-size: 12px;
+  font-weight: 400;
+  padding-left: 7px;
+}

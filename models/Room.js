@@ -37,11 +37,6 @@ const roomSchema = new Schema(
 
 roomSchema.plugin(mongodbErrorHandler);
 
-// Duplicate the ID field.
-roomSchema.virtual("id").get(function() {
-  return this._id.toHexString();
-});
-
 // Ensure virtual fields are serialised.
 roomSchema.set("toJSON", {
   virtuals: true

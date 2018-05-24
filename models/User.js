@@ -28,6 +28,10 @@ const userSchema = new Schema({
     required: true,
     trim: true
   },
+  rooms: {
+    type: Array,
+    trim: true
+  },
   socketId: {
     type: String,
     trim: true
@@ -37,8 +41,8 @@ const userSchema = new Schema({
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 userSchema.plugin(mongodbErrorHandler);
 
-userSchema.virtual("id").get(function() {
-  return this._id.toHexString();
+userSchema.set("toJSON", {
+  virtuals: true
 });
 
 module.exports = mongoose.model("User", userSchema);

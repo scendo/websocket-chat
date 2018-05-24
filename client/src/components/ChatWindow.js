@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import { List, Form } from "semantic-ui-react";
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
@@ -25,20 +25,47 @@ class ChatWindow extends Component {
   }
 
   render() {
+    const { users, messages } = this.props;
+
     return (
       <div>
-        <div id="chat-window" />
-        <div>
-          <Form.Input
-            id="m"
-            name="message"
-            autoComplete="off"
-            fluid
-            onChange={this.onInputChange}
-            onKeyPress={this.handleMessageSubmit}
-            value={this.state.input}
-          />
+        <div id="chat-window" >
+          <List id="messages">
+            {Object.values(messages).map((message, index) => {
+      
+              const timeStamp = new Date(message.created).toLocaleTimeString(
+                "en-US",
+                {
+                  hour: "2-digit",
+                  minute: "2-digit"
+                }
+              );
+
+              return (
+                <React.Fragment key={message.id}>
+                  <List.Item key={message.id} className="room-message">
+                    <List.Header>
+                      <span className="room-message-username">
+                        {users[message.user].name}
+                      </span>
+                      <span className="room-message-timestamp">{timeStamp}</span>
+                    </List.Header>
+                    <List.Content>{message.value}</List.Content>
+                  </List.Item>
+                </React.Fragment>
+              );
+            })}
+          </List>
         </div>
+        <Form.Input
+              id="m"
+              name="message"
+              autoComplete="off"
+              fluid
+              onChange={this.onInputChange}
+              onKeyPress={this.handleMessageSubmit}
+              value={this.state.input}
+            />
       </div>
     );
   }

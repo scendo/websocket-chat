@@ -43,6 +43,7 @@ class Chatroom extends Component {
         { currentUserId: this.props.auth.user.id },
         response => {
           const options = { socket, ...response.data };
+
           this.props.openChatRoom(options);
         }
       );
@@ -57,6 +58,7 @@ class Chatroom extends Component {
 
   render() {
     const { menuVisible } = this.state;
+    const { activeRoom, users, messages, rooms } = this.props;
 
     return (
       <div id="chatroom">
@@ -76,8 +78,8 @@ class Chatroom extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <ChatHeader />
-              <ChatWindow />
+              <ChatHeader activeRoom={activeRoom} />
+              <ChatWindow users={users} messages={messages} />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -86,7 +88,12 @@ class Chatroom extends Component {
   }
 }
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  currentUser: state.auth.user,
+  users: state.users,
+  rooms: state.rooms,
+  activeRoom: state.activeRoom,
+  messages: state.messages
 });
 
 export default connect(mapStateToProps, { openChatRoom })(Chatroom);
