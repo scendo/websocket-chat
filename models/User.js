@@ -28,6 +28,10 @@ const userSchema = new Schema({
     required: true,
     trim: true
   },
+  rooms: {
+    type: Array,
+    trim: true
+  },
   socketId: {
     type: String,
     trim: true
