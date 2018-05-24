@@ -6,14 +6,14 @@ import { combineReducers } from "redux";
 import auth from "./auth";
 import users from "./users";
 import rooms from "./rooms";
-import room from "./room";
+import activeRoom from "./activeRoom";
 import messages from "./messages";
 
 const rootReducer = combineReducers({
   auth,
   users,
   rooms,
-  room,
+  activeRoom,
   messages
 });
 
