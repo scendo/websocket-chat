@@ -21,6 +21,23 @@ body > div > div > div.login-form {
   padding-left: 25px;
 }
 
+/* Chatroom - Sidebar */
+#chat-sidebar.ui.vertical.menu .header,
+/* Category: Channls, Direct Messages */
+#chat-sidebar.ui.vertical.menu .item>.header:not(.ui) {
+  text-align: left;
+  font-size: 1.5em;
+}
+/* Category Sub items */
+#chat-sidebar.ui.vertical.menu .menu .item {
+  text-align: left;
+  font-size: 1em;
+}
+#chat-sidebar.ui.labeled.icon.menu .item > .icon:not(.dropdown) {
+  font-size: 12px !important;
+  float: left;
+}
+
 /* Chatroom - Window */
 #messages .room-message {
   padding: 5px 0;

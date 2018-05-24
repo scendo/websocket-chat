@@ -16,11 +16,32 @@ class ChatSidebar extends Component {
     this.props.logoutUser();
   }
 
+  renderChannels() {
+    const { rooms } = this.props;
+
+    if (rooms.channels === undefined) {
+      return;
+    }
+
+    return rooms.channels.map((roomId, index) => {
+      const room = rooms[roomId];
+      return (
+        <Menu.Item
+          key={room.id}
+          roomid={room.id}
+          icon="hashtag"
+          name={room.name}
+        />
+      );
+    });
+  }
+
   render() {
     return (
       <div id="chat-sidebar">
         <Menu.Item>
           <Menu.Header as="h2">Channels</Menu.Header>
+          <Menu.Menu>{this.renderChannels()}</Menu.Menu>
         </Menu.Item>
         <Menu.Item>
           <Menu.Header as="h2">Direct Messages</Menu.Header>
@@ -31,7 +52,8 @@ class ChatSidebar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  rooms: state.rooms
 });
 
 export default connect(mapStateToProps, { logoutUser })(ChatSidebar);

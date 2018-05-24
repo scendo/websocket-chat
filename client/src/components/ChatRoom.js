@@ -58,7 +58,8 @@ class Chatroom extends Component {
 
   render() {
     const { menuVisible } = this.state;
-    const { activeRoom, users, messages } = this.props;
+    const { activeRoom, users, messages, rooms } = this.props;
+
     return (
       <div id="chatroom">
         <Navbar handleMenuClick={this.handleMenuClick} />
