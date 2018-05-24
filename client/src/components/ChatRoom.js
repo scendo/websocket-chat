@@ -31,9 +31,15 @@ class Chatroom extends Component {
   componentDidMount() {
     if (!this.props.socket) {
       const socket = this.initSocket();
+      this.initSocketEvents(socket);
+    } else {
+      this.initSocketEvents(this.props.socket);
     }
   }
 
+  /**
+   * Initialize the  client/server socket connection
+   */
   initSocket() {
     const socket = io("http://localhost:7777");
 
@@ -50,6 +56,22 @@ class Chatroom extends Component {
     });
 
     return socket;
+  }
+
+  /**
+   * Initialize socket events to accept emit's from the server socket
+   */
+  initSocketEvents(socket) {
+    if (socket) {
+      socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
+        const { activeRoom } = this.props;
+
+        //If client's actively in the room of the sent message, then add it to the current room
+        if (activeRoom.id === room.id) {
+          this.props.addMessageToRoom(room, message);
+        }
+      });
+    }
   }
 
   handleMenuClick() {
