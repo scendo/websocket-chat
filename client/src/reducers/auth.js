@@ -1,4 +1,9 @@
-import { USER_LOGGED_IN, SET_CURRENT_USER, ROOM_OPEN } from "../actions/types";
+import {
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  SET_CURRENT_USER,
+  ROOM_OPEN
+} from "../actions/types";
 
 const defaultState = {
   isAuthenticated: false,
@@ -10,9 +15,15 @@ export default function(state = defaultState, action) {
     case USER_LOGGED_IN:
     case SET_CURRENT_USER:
       return {
-        ...state,
-        isAuthenticated: Object.keys(action.payload).length ? true : false,
+        isAuthenticated: Object.keys(action.payload).length > 0 ? true : false,
         user: action.payload
+      };
+
+    case USER_LOGGED_OUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {}
       };
 
     case ROOM_OPEN:

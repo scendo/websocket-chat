@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { USER_LOGGED_IN, SET_CURRENT_USER } from "./types";
+import { USER_LOGGED_IN, USER_LOGGED_OUT, SET_CURRENT_USER } from "./types";
 /**
  * Log the user in
  *
@@ -34,7 +34,9 @@ export const logoutUser = () => dispatch => {
   // Remove token from localStorage
   localStorage.removeItem("jwtToken");
   // Set current user to {} which will set isAuthenticated to false
-  dispatch(setCurrentUser({}));
+  dispatch({
+    type: USER_LOGGED_OUT
+  });
 };
 
 export const setCurrentUser = user => {
