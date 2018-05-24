@@ -16,12 +16,14 @@ import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
 import ChatWindow from "./ChatWindow";
+import CreateChannel from "./CreateChannel";
 
 class Chatroom extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      createChannel: false,
       menuVisible: false
     };
 
@@ -81,6 +83,10 @@ class Chatroom extends Component {
   render() {
     const { menuVisible } = this.state;
     const { currentUser, activeRoom, users, messages, rooms } = this.props;
+
+    if (this.state.createChannel) {
+      return <CreateChannel {...this.props} />;
+    }
 
     return (
       <div id="chatroom">

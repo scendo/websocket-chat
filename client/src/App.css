@@ -53,3 +53,16 @@ body > div > div > div.login-form {
   font-weight: 400;
   padding-left: 7px;
 }
+
+/* Create Channel */
+#chat-create-channel,
+#chat-add-direct-message {
+  padding: 100px 50px;
+}
+
+.ui.button.escape-chat-menu-btn {
+  position: absolute;
+  background: transparent;
+  top: 75px;
+  right: 50px;
+}
