@@ -32,6 +32,7 @@ class CreateChannel extends Component {
     };
 
     this.handleUserSelection = this.handleUserSelection.bind(this);
+    this.handleLabelClick = this.handleLabelClick.bind(this);
   }
 
   /**
@@ -40,6 +41,18 @@ class CreateChannel extends Component {
   handleUserSelection(e, data) {
     this.setState({
       selectedUsers: data.value
+    });
+  }
+
+  /**
+   * Remove user from selecteUsers on Dropdown Label click
+   */
+  handleLabelClick(e, data) {
+    const selectedUsers = this.state.selectedUsers.filter(
+      (userId, index) => userId !== data.value
+    );
+    this.setState({
+      selectedUsers
     });
   }
 
@@ -95,6 +108,7 @@ class CreateChannel extends Component {
               selection
               options={this.state.userDropdownOptions}
               onChange={this.handleUserSelection}
+              onLabelClick={this.handleLabelClick}
               value={this.state.selectedUsers}
             />
           </Form.Field>
