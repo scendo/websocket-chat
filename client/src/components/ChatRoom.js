@@ -35,6 +35,7 @@ class Chatroom extends Component {
       this
     );
     this.showRoom = this.showRoom.bind(this);
+    this.setMenuVisibility = this.setMenuVisibility.bind(this);
   }
 
   componentDidMount() {
@@ -126,7 +127,13 @@ class Chatroom extends Component {
     const { currentUser, activeRoom, users, messages, rooms } = this.props;
 
     if (this.state.createChannel) {
-      return <CreateChannel {...this.props} showRoom={this.showRoom} />;
+      return (
+        <CreateChannel
+          {...this.props}
+          showRoom={this.showRoom}
+          setMenuVisibility={this.setMenuVisibility}
+        />
+      );
     }
 
     if (this.state.addDirectMessage) {

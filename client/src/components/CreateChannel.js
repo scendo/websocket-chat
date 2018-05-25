@@ -33,6 +33,7 @@ class CreateChannel extends Component {
 
     this.handleUserSelection = this.handleUserSelection.bind(this);
     this.handleLabelClick = this.handleLabelClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   /**
@@ -54,6 +55,13 @@ class CreateChannel extends Component {
     this.setState({
       selectedUsers
     });
+  }
+
+  handleSubmit(e) {
+    const { showRoom, setMenuVisibility } = this.props;
+
+    setMenuVisibility(false);
+    showRoom();
   }
 
   /**
@@ -92,7 +100,7 @@ class CreateChannel extends Component {
           size="big"
           onClick={this.props.showRoom}
         />
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Name</label>
             <input placeholder="# e.g. leads" />
