@@ -17,6 +17,7 @@ import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
 import ChatWindow from "./ChatWindow";
 import CreateChannel from "./CreateChannel";
+import DirectMessageSearch from "./DirectMessageSearch";
 
 class Chatroom extends Component {
   constructor(props) {
@@ -24,11 +25,15 @@ class Chatroom extends Component {
 
     this.state = {
       createChannel: false,
+      addDirectMessage: false,
       menuVisible: false
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleCreateChannelClick = this.handleCreateChannelClick.bind(this);
+    this.handleAddDirectMessageClick = this.handleAddDirectMessageClick.bind(
+      this
+    );
     this.showRoom = this.showRoom.bind(this);
   }
 
@@ -88,13 +93,20 @@ class Chatroom extends Component {
     });
   }
 
+  handleAddDirectMessageClick(e) {
+    this.setState({
+      addDirectMessage: true
+    });
+  }
+
   /**
    * Used to exit one of the setting Components and renders the chatroom instead
    * ie: CreateChannel
    */
   showRoom() {
     this.setState({
-      createChannel: false
+      createChannel: false,
+      addDirectMessage: false
     });
   }
 
@@ -104,6 +116,10 @@ class Chatroom extends Component {
 
     if (this.state.createChannel) {
       return <CreateChannel {...this.props} showRoom={this.showRoom} />;
+    }
+
+    if (this.state.addDirectMessage) {
+      return <DirectMessageSearch {...this.props} showRoom={this.showRoom} />;
     }
 
     return (
@@ -122,6 +138,7 @@ class Chatroom extends Component {
           >
             <ChatSidebar
               handleCreateChannelClick={this.handleCreateChannelClick}
+              handleAddDirectMessageClick={this.handleAddDirectMessageClick}
             />
           </Sidebar>
           <Sidebar.Pusher>

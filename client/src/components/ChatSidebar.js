@@ -82,6 +82,7 @@ class ChatSidebar extends Component {
                   icon={
                     <Icon name="add circle" className="sidebar-add-chat-icon" />
                   }
+                  onClick={this.props.handleAddDirectMessageClick}
                 />
               }
               content="Open a direct message"
