@@ -30,6 +30,17 @@ class CreateChannel extends Component {
       selectedUsers: [],
       userDropdownOptions: this.getUserDropdownOptions(remainingUsers)
     };
+
+    this.handleUserSelection = this.handleUserSelection.bind(this);
+  }
+
+  /**
+   * Udpate selectedUsers
+   */
+  handleUserSelection(e, data) {
+    this.setState({
+      selectedUsers: data.value
+    });
   }
 
   /**
@@ -83,6 +94,8 @@ class CreateChannel extends Component {
               search
               selection
               options={this.state.userDropdownOptions}
+              onChange={this.handleUserSelection}
+              value={this.state.selectedUsers}
             />
           </Form.Field>
           <Button type="submit" onClick={this.props.showRoom}>
