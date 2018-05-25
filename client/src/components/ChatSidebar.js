@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Menu } from "semantic-ui-react";
+import { Menu, Popup, Button, Icon } from "semantic-ui-react";
 import { logoutUser } from "../actions/auth";
 
 class ChatSidebar extends Component {
@@ -40,11 +40,59 @@ class ChatSidebar extends Component {
     return (
       <div id="chat-sidebar">
         <Menu.Item>
-          <Menu.Header as="h2">Channels</Menu.Header>
+          <Menu.Header as="h2">
+            Channels
+            <Popup
+              position="bottom left"
+              trigger={
+                <Button
+                  floated="right"
+                  size="large"
+                  className="sidebar-add-chat-btn"
+                  icon={
+                    <Icon
+                      color="grey"
+                      name="add circle"
+                      className="sidebar-add-chat-icon"
+                      onClick={this.props.handleCreateChannelClick}
+                    />
+                  }
+                />
+              }
+              content="Create a new channel"
+              style={{
+                opacity: 0.9,
+                padding: "2em"
+              }}
+              size="mini"
+              inverted
+            />
+          </Menu.Header>
           <Menu.Menu>{this.renderChannels()}</Menu.Menu>
         </Menu.Item>
         <Menu.Item>
-          <Menu.Header as="h2">Direct Messages</Menu.Header>
+          <Menu.Header as="h2">
+            Direct Messages
+            <Popup
+              trigger={
+                <Button
+                  floated="right"
+                  size="large"
+                  className="sidebar-add-chat-btn"
+                  icon={
+                    <Icon name="add circle" className="sidebar-add-chat-icon" />
+                  }
+                />
+              }
+              content="Open a direct message"
+              style={{
+                opacity: 0.9,
+                padding: "2em"
+              }}
+              size="mini"
+              inverted
+            />
+          </Menu.Header>
         </Menu.Item>
         <Menu.Item onClick={this.handleLogoutClick}>Logout</Menu.Item>
       </div>

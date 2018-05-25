@@ -25,8 +25,6 @@ class CreateChannel extends Component {
       ...remainingUsers
     } = props.users;
 
-    console.log(props, remainingUsers);
-
     this.state = {
       nameInput: "",
       selectedUsers: [],
@@ -68,6 +66,7 @@ class CreateChannel extends Component {
           icon="remove"
           floated="right"
           size="big"
+          onClick={this.props.showRoom}
         />
         <Form>
           <Form.Field>
@@ -86,7 +85,9 @@ class CreateChannel extends Component {
               options={this.state.userDropdownOptions}
             />
           </Form.Field>
-          <Button type="submit">Cancel</Button>
+          <Button type="submit" onClick={this.props.showRoom}>
+            Cancel
+          </Button>
           <Button type="submit">Create Channel</Button>
         </Form>
       </div>

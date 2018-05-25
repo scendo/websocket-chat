@@ -1,12 +1,38 @@
-body > div,
-body > div > div,
-body > div > div > div.login-form {
-  height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+body {
+  font: 13px Lato, Helvetica, Arial;
+}
+
+#chatroom .ui.menu {
+  margin: 0 !important;
+}
+#chatroom .ui.segment.pushable {
+  margin: 0 !important;
+  box-shadow: none;
+  border: none;
+}
+
+/* Chatroom - Window */
 #chat-window {
   height: 350px;
   overflow-y: scroll;
 }
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#messages li {
+  padding: 5px 10px;
+}
+#messages li:nth-child(odd) {
+  background: #eee;
+}
+
 /* Chatroom - Header */
 #room-header {
   padding-bottom: 15px;
@@ -16,29 +42,8 @@ body > div > div > div.login-form {
   font-size: 20px;
   font-weight: 700;
 }
-#room-header .room-setting-icon {
-  /* float:right; */
-  padding-left: 25px;
-}
 
-/* Chatroom - Sidebar */
-#chat-sidebar.ui.vertical.menu .header,
-/* Category: Channls, Direct Messages */
-#chat-sidebar.ui.vertical.menu .item>.header:not(.ui) {
-  text-align: left;
-  font-size: 1.5em;
-}
-/* Category Sub items */
-#chat-sidebar.ui.vertical.menu .menu .item {
-  text-align: left;
-  font-size: 1em;
-}
-#chat-sidebar.ui.labeled.icon.menu .item > .icon:not(.dropdown) {
-  font-size: 12px !important;
-  float: left;
-}
-
-/* Chatroom - Window */
+/* Chatroom Window */
 #messages .room-message {
   padding: 5px 0;
 }
@@ -54,15 +59,51 @@ body > div > div > div.login-form {
   padding-left: 7px;
 }
 
+.ui.button.escape-chat-menu-btn {
+  position: absolute;
+  background: transparent;
+  top: 75px;
+  right: 50px;
+}
+
+/* Chatroom - Sidebar */
+
+/* Category */
+#chat-sidebar.ui.vertical.menu .item > .header:not(.ui) {
+  text-align: left;
+  font-size: 1.5em;
+}
+
+/* Category Sub items */
+#chat-sidebar.ui.vertical.menu .menu .item {
+  text-align: left;
+  font-size: 1em;
+}
+
+#chat-sidebar.ui.labeled.icon.menu .item > .icon:not(.dropdown) {
+  font-size: 12px !important;
+  float: left;
+}
+
+#chat-sidebar .sidebar-add-chat-btn {
+  padding: 2px;
+  background-color: transparent;
+}
+
+#chat-sidebar .sidebar-add-chat-icon {
+  /* position: absolute; */
+  margin-bottom: 10px;
+  top: 12px;
+}
+
 /* Create Channel */
 #chat-create-channel,
 #chat-add-direct-message {
   padding: 100px 50px;
 }
 
-.ui.button.escape-chat-menu-btn {
-  position: absolute;
-  background: transparent;
-  top: 75px;
-  right: 50px;
+/* Direct Message search */
+#direct-message-list .ununread-messages-label {
+  float: none;
+  cursor: pointer;
 }

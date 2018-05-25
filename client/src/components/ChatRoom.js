@@ -28,6 +28,8 @@ class Chatroom extends Component {
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
+    this.handleCreateChannelClick = this.handleCreateChannelClick.bind(this);
+    this.showRoom = this.showRoom.bind(this);
   }
 
   componentDidMount() {
@@ -80,12 +82,28 @@ class Chatroom extends Component {
     this.setState({ menuVisible: !this.state.menuVisible });
   }
 
+  handleCreateChannelClick(e) {
+    this.setState({
+      createChannel: true
+    });
+  }
+
+  /**
+   * Used to exit one of the setting Components and renders the chatroom instead
+   * ie: CreateChannel
+   */
+  showRoom() {
+    this.setState({
+      createChannel: false
+    });
+  }
+
   render() {
     const { menuVisible } = this.state;
     const { currentUser, activeRoom, users, messages, rooms } = this.props;
 
     if (this.state.createChannel) {
-      return <CreateChannel {...this.props} />;
+      return <CreateChannel {...this.props} showRoom={this.showRoom} />;
     }
 
     return (
@@ -102,7 +120,9 @@ class Chatroom extends Component {
             icon="labeled"
             vertical
           >
-            <ChatSidebar />
+            <ChatSidebar
+              handleCreateChannelClick={this.handleCreateChannelClick}
+            />
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
