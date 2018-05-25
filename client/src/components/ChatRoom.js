@@ -84,7 +84,7 @@ class Chatroom extends Component {
   }
 
   handleMenuClick() {
-    this.setState({ menuVisible: !this.state.menuVisible });
+    this.setMenuVisibility(!this.state.menuVisible);
   }
 
   handleCreateChannelClick(e) {
@@ -107,6 +107,17 @@ class Chatroom extends Component {
     this.setState({
       createChannel: false,
       addDirectMessage: false
+    });
+  }
+
+  /**
+   * Set the visibility of the menu
+   *
+   * (boolean) visible
+   */
+  setMenuVisibility(visible) {
+    this.setState({
+      menuVisible: visible
     });
   }
 
