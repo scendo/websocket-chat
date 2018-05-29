@@ -95,6 +95,22 @@ initChatService = async ({ socketId, currentUserId }) => {
   };
 };
 
+/**
+ * Returns the room and messages in the room
+ */
+getRoomData = async roomId => {
+  const room = await Room.findById(roomId);
+  const messages = await Message.find({
+    _id: {
+      $in: room.messages
+    }
+  });
+  return {
+    room,
+    messages
+  };
+};
+
 module.exports = {
   initChatService
 };

@@ -73,11 +73,11 @@ class Chatroom extends Component {
    */
   initSocketEvents(socket) {
     if (socket) {
-      const { activeRoom, currentUser, addRoom } = this.props;
+      const { currentUser, addRoom } = this.props;
 
       socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
         //If client's actively in the room of the sent message, then add it to the current room
-        if (activeRoom.id === room.id) {
+        if (this.props.activeRoom.id === room.id) {
           this.props.addMessageToRoom(room, message);
         }
       });
@@ -167,6 +167,8 @@ class Chatroom extends Component {
             vertical
           >
             <ChatSidebar
+              {...this.props}
+              setMenuVisibility={this.setMenuVisibility}
               handleCreateChannelClick={this.handleCreateChannelClick}
               handleAddDirectMessageClick={this.handleAddDirectMessageClick}
             />

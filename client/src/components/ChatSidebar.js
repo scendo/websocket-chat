@@ -7,7 +7,37 @@ class ChatSidebar extends Component {
   constructor(props) {
     super(props);
 
+    this.handleRoomClick = this.handleRoomClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  }
+
+  /**
+   * Open the clicked chat room
+   *
+   * @param {*} e
+   * @param {*} param1
+   */
+  handleRoomClick(e, { roomid }) {
+    const { socket, currentUser, openChatRoom, setMenuVisibility } = this.props;
+
+    socket.emit(
+      "ROOM_OPEN",
+      {
+        currentUserId: currentUser.id,
+        roomId: roomid
+      },
+      response => {
+        if (response.success) {
+          const { activeRoom, messages } = response.data;
+          setMenuVisibility(false);
+          openChatRoom({
+            currentUser,
+            room: activeRoom,
+            messages
+          });
+        }
+      }
+    );
   }
 
   handleLogoutClick(e) {
@@ -31,6 +61,7 @@ class ChatSidebar extends Component {
           roomid={room.id}
           icon="hashtag"
           name={room.name}
+          onClick={this.handleRoomClick}
         />
       );
     });
