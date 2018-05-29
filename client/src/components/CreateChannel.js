@@ -31,9 +31,22 @@ class CreateChannel extends Component {
       userDropdownOptions: this.getUserDropdownOptions(remainingUsers)
     };
 
+    this.handleNameInputChange = this.handleNameInputChange.bind(this);
     this.handleUserSelection = this.handleUserSelection.bind(this);
     this.handleLabelClick = this.handleLabelClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  /**
+   * Update create channel name input field in state
+   */
+  handleNameInputChange(e) {
+    const { value } = e.target;
+    if (value.length > 0) {
+      this.setState({
+        nameInput: e.target.value
+      });
+    }
   }
 
   /**
@@ -58,10 +71,25 @@ class CreateChannel extends Component {
   }
 
   handleSubmit(e) {
-    const { showRoom, setMenuVisibility } = this.props;
+    const { socket, showRoom, setMenuVisibility } = this.props;
 
-    setMenuVisibility(false);
-    showRoom();
+    socket.emit(
+      "ROOM_CREATE",
+      {
+        group: "channel",
+        name: this.state.nameInput,
+        users: [this.props.currentUser.id, ...this.state.selectedUsers]
+      },
+      response => {
+        if (response.success) {
+          const { room, messages } = response.data;
+
+          setMenuVisibility(false);
+
+          showRoom();
+        }
+      }
+    );
   }
 
   /**
@@ -103,7 +131,10 @@ class CreateChannel extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Name</label>
-            <input placeholder="# e.g. leads" />
+            <input
+              placeholder="# e.g. leads"
+              onChange={this.handleNameInputChange}
+            />
           </Form.Field>
 
           <Form.Field>
