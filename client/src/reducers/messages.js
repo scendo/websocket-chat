@@ -9,7 +9,7 @@ export default function(state = defaultState, action) {
 
     case ROOM_OPEN: {
       const { messages } = action.payload;
-      return messages;
+      return messages || state;
     }
 
     case MESSAGE_ADD: {

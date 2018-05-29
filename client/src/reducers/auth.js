@@ -29,13 +29,19 @@ export default function(state = defaultState, action) {
     case ROOM_OPEN:
       const { socket } = action.payload;
 
-      return {
+      const newState = {
         ...state,
         user: {
-          ...state.user,
-          socketId: socket.id
+          ...state.user
         }
       };
+
+      if (socket) {
+        newState.user.socketId = socket.id;
+      }
+
+      return newState;
+
     default:
       return state;
   }

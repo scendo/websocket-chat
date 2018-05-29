@@ -8,7 +8,7 @@ export default function(state = defaultState, action) {
       return {};
     case ROOM_OPEN: {
       const { rooms } = action.payload;
-      return rooms;
+      return rooms || state;
     }
 
     case ROOM_ADD: {

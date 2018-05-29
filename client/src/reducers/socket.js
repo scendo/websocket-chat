@@ -8,7 +8,7 @@ export default function(state = defaultState, action) {
       return null;
     case ROOM_OPEN:
       const { socket } = action.payload;
-      return socket;
+      return socket || state;
 
     default:
       return state;
