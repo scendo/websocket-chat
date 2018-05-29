@@ -11,7 +11,7 @@ import {
   Form,
   Grid
 } from "semantic-ui-react";
-import { openChatRoom, addMessageToRoom } from "../actions/chat";
+import { openChatRoom, addRoom, addMessageToRoom } from "../actions/chat";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
@@ -73,12 +73,24 @@ class Chatroom extends Component {
    */
   initSocketEvents(socket) {
     if (socket) {
-      socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
-        const { activeRoom } = this.props;
+      const { activeRoom, currentUser, addRoom } = this.props;
 
+      socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
         //If client's actively in the room of the sent message, then add it to the current room
         if (activeRoom.id === room.id) {
           this.props.addMessageToRoom(room, message);
+        }
+      });
+
+      /**
+       * A room was created.
+       *
+       * If the current user is in the room, add the room to the client's store so that the client
+       * can access the room without refreshing the browser
+       */
+      socket.on("ROOM_CREATED", ({ room }) => {
+        if (room.users.includes(currentUser.id)) {
+          addRoom(room);
         }
       });
     }
@@ -180,6 +192,8 @@ const mapStateToProps = state => ({
   messages: state.messages
 });
 
-export default connect(mapStateToProps, { openChatRoom, addMessageToRoom })(
-  Chatroom
-);
+export default connect(mapStateToProps, {
+  openChatRoom,
+  addRoom,
+  addMessageToRoom
+})(Chatroom);

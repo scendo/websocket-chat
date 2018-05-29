@@ -4,6 +4,7 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 //Rooms
 export const ROOM_OPEN = "ROOM_OPEN";
+export const ROOM_ADD = "ROOM_ADD";
 
 //Messages
 export const MESSAGE_ADD = "MESSAGE_ADD";

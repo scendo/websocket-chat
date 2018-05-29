@@ -1,4 +1,4 @@
-import { ROOM_OPEN, MESSAGE_ADD } from "./types";
+import { ROOM_OPEN, ROOM_ADD, MESSAGE_ADD } from "./types";
 
 /**
  * Action to initialize a chatroom/private message
@@ -12,6 +12,13 @@ export const openChatRoom = options => {
   return {
     type: ROOM_OPEN,
     payload: options
+  };
+};
+
+export const addRoom = room => {
+  return {
+    type: ROOM_ADD,
+    payload: { room }
   };
 };
 

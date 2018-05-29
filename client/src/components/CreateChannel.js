@@ -71,7 +71,7 @@ class CreateChannel extends Component {
   }
 
   handleSubmit(e) {
-    const { socket, showRoom, setMenuVisibility } = this.props;
+    const { socket, showRoom, addRoom, setMenuVisibility } = this.props;
 
     socket.emit(
       "ROOM_CREATE",
@@ -85,6 +85,8 @@ class CreateChannel extends Component {
           const { room, messages } = response.data;
 
           setMenuVisibility(false);
+
+          addRoom(room);
 
           showRoom();
         }
