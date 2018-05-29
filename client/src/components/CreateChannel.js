@@ -8,6 +8,7 @@ import {
   Icon,
   Dropdown
 } from "semantic-ui-react";
+import soa from "../utils/socketActions";
 
 class CreateChannel extends Component {
   constructor(props) {
@@ -79,9 +80,9 @@ class CreateChannel extends Component {
       setMenuVisibility
     } = this.props;
 
-    socket.emit(
-      "ROOM_CREATE",
+    soa.createRoom(
       {
+        socket,
         group: "channel",
         name: this.state.nameInput,
         users: [this.props.currentUser.id, ...this.state.selectedUsers]

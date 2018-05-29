@@ -11,6 +11,7 @@ import {
   Form,
   Grid
 } from "semantic-ui-react";
+import soa from "../utils/socketActions";
 import { openChatRoom, addRoom, addMessageToRoom } from "../actions/chat";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
@@ -54,12 +55,9 @@ class Chatroom extends Component {
     const socket = io("http://localhost:7777");
 
     socket.on("connect", () => {
-      socket.emit(
-        "CHAT_SERVICE_START",
-        { currentUserId: this.props.auth.user.id },
-        response => {
-          const options = { socket, ...response.data };
-
+      soa.startChatService(
+        { socket, currentUserId: this.props.auth.user.id },
+        options => {
           this.props.openChatRoom(options);
         }
       );
@@ -73,7 +71,7 @@ class Chatroom extends Component {
    */
   initSocketEvents(socket) {
     if (socket) {
-      const { currentUser, addRoom } = this.props;
+      const { currentUser } = this.props;
 
       socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
         //If client's actively in the room of the sent message, then add it to the current room
@@ -90,7 +88,7 @@ class Chatroom extends Component {
        */
       socket.on("ROOM_CREATED", ({ room }) => {
         if (room.users.includes(currentUser.id)) {
-          addRoom(room);
+          this.props.addRoom(room);
         }
       });
     }

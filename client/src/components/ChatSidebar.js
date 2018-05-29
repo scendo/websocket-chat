@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Menu, Popup, Button, Icon } from "semantic-ui-react";
 import { logoutUser } from "../actions/auth";
+import soa from "../utils/socketActions";
 
 class ChatSidebar extends Component {
   constructor(props) {
@@ -18,19 +19,19 @@ class ChatSidebar extends Component {
    * @param {*} param1
    */
   handleRoomClick(e, { roomid }) {
-    const { socket, currentUser, openChatRoom, setMenuVisibility } = this.props;
+    const { socket, currentUser } = this.props;
 
-    socket.emit(
-      "ROOM_OPEN",
+    soa.openRoom(
       {
+        socket,
         currentUserId: currentUser.id,
         roomId: roomid
       },
       response => {
         if (response.success) {
           const { activeRoom, messages } = response.data;
-          setMenuVisibility(false);
-          openChatRoom({
+          this.props.setMenuVisibility(false);
+          this.props.openChatRoom({
             currentUser,
             room: activeRoom,
             messages
