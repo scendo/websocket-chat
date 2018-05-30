@@ -32,6 +32,10 @@ const userSchema = new Schema({
     type: Array,
     trim: true
   },
+  metaData: {
+    type: Object,
+    trim: true
+  },
   socketId: {
     type: String,
     trim: true
