@@ -50,6 +50,44 @@ class ChatWindow extends Component {
   }
 
   /**
+   * Groups messages by date
+   *
+   * @param {*} messages
+   */
+  groupMessagesByDate(messages) {
+    const messagesByDate = Object.values(this.props.messages).reduce(
+      (obj, message) => {
+        const date = new Date(message.created);
+
+        const dateKey = this.fromToday(date)
+          ? "today"
+          : date
+              .toDateString()
+              .toLowerCase()
+              .replace(new RegExp(" ", "g"), "-");
+
+        return obj[dateKey]
+          ? { ...obj, [dateKey]: [...obj[dateKey], message] }
+          : { ...obj, [dateKey]: [message] };
+      },
+      {}
+    );
+
+    return messagesByDate;
+  }
+
+  /**
+   * Checks if message date is from the current Date/time
+   *
+   * @param {} messageDate
+   * @returns boolean
+   */
+  fromToday(messageDate) {
+    const today = new Date();
+    return today.toDateString() === messageDate.toDateString();
+  }
+
+  /**
    * Instantly scroll to the bottom of the ChatWindow
    *
    */
@@ -59,7 +97,8 @@ class ChatWindow extends Component {
 
   render() {
     const { users, messages } = this.props;
-
+    const messagesByDate = this.groupMessagesByDate(messages);
+    console.log(messagesByDate);
     return (
       <div>
         <div id="chat-window">
