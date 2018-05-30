@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { Input, Button, Header, List, Icon } from "semantic-ui-react";
+import soa from "../utils/socketActions";
+import {
+  getRoomsByGroup,
+  getDirectMessage,
+  setDirectMessageName
+} from "../utils/chat";
 
 class DirectMessageSearch extends Component {
   constructor(props) {
@@ -11,6 +17,7 @@ class DirectMessageSearch extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleUserClick = this.handleUserClick.bind(this);
   }
 
   getMatchedUsers(users, inputValue) {
@@ -30,6 +37,85 @@ class DirectMessageSearch extends Component {
       inputValue,
       matchedUsers: this.getMatchedUsers(users, inputValue)
     });
+  }
+
+  handleUserClick(e, { userid, roomid }) {
+    const {
+      socket,
+      currentUser,
+      rooms,
+      users,
+      showRoom,
+      addRoom,
+      openChatRoom,
+      setMenuVisibility
+    } = this.props;
+
+    const directRooms = getRoomsByGroup(rooms, "direct");
+    const directMessage = getDirectMessage(directRooms, userid);
+    setMenuVisibility(false);
+    
+    if (directMessage) {
+
+      soa.openRoom(
+        {
+          socket,
+          currentUserId: currentUser.id,
+          roomId: directMessage.id
+
+        },
+        (response) => {
+
+          if(response.success){
+            const {activeRoom, messages} = response.data;
+
+            const updatedRoom = setDirectMessageName({
+              room: activeRoom,
+              currentUser,
+              users
+            });
+            
+            openChatRoom({
+              room: updatedRoom,
+              messages
+            });
+
+            showRoom();
+          }
+        }
+      )
+    } else {
+      //create
+      soa.createRoom(
+        {
+          socket,
+          group: "direct",
+          name: "Direct Message",
+          users: [currentUser.id, userid]
+        },
+        response => {
+          if (response.success) {
+            const { room, messages } = response.data;
+
+            const updatedRoom = setDirectMessageName({
+              room,
+              currentUser,
+              users
+            });
+
+            addRoom(updatedRoom);
+
+            openChatRoom({
+              room: updatedRoom,
+              messages
+            });
+
+            showRoom();
+          }
+        }
+      );
+    }
+    
   }
 
   render() {
@@ -61,6 +147,7 @@ class DirectMessageSearch extends Component {
                 key={user.id}
                 userid={user.id}
                 style={{ cursor: "pointer" }}
+                onClick={this.handleUserClick}
               >
                 <List.Content>
                   <Icon

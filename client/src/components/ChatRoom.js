@@ -147,7 +147,13 @@ class Chatroom extends Component {
     }
 
     if (this.state.addDirectMessage) {
-      return <DirectMessageSearch {...this.props} showRoom={this.showRoom} />;
+      return (
+        <DirectMessageSearch
+          {...this.props}
+          showRoom={this.showRoom}
+          setMenuVisibility={this.setMenuVisibility}
+        />
+      );
     }
 
     return (

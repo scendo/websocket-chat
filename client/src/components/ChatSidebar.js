@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Menu, Popup, Button, Icon } from "semantic-ui-react";
 import { logoutUser } from "../actions/auth";
 import soa from "../utils/socketActions";
+import { setDirectMessageName } from "../utils/chat";
 
 class ChatSidebar extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ChatSidebar extends Component {
    * @param {*} param1
    */
   handleRoomClick(e, { roomid }) {
-    const { socket, currentUser } = this.props;
+    const { socket, currentUser, users } = this.props;
 
     soa.openRoom(
       {
@@ -31,11 +32,23 @@ class ChatSidebar extends Component {
         if (response.success) {
           const { activeRoom, messages } = response.data;
           this.props.setMenuVisibility(false);
-          this.props.openChatRoom({
+
+          const options = {
             currentUser,
             room: activeRoom,
             messages
-          });
+          };
+
+          //dynamically update the room name if it's a direct message
+          if (activeRoom.group === "direct") {
+            options.room = setDirectMessageName({
+              room: activeRoom,
+              currentUser,
+              users
+            });
+          }
+
+          this.props.openChatRoom(options);
         }
       }
     );
@@ -66,6 +79,44 @@ class ChatSidebar extends Component {
         />
       );
     });
+  }
+
+  /**
+   * TODO: update to render all users, but grey out the users who do not have a socketID meaning they aren't connected
+   */
+  renderDirectMessages() {
+    const { currentUser, rooms, users } = this.props;
+
+    if (rooms.direct !== undefined) {
+      /**
+       * Only render the room if the current user is in the room
+       */
+      return rooms.direct.map((roomId, index) => {
+        const room = rooms[roomId];
+        const userId = room.users.find(
+          (userId, index) => userId !== currentUser.id
+        );
+        const user = users[userId];
+
+        return (
+          <React.Fragment key={room.id}>
+            <Menu.Item
+              id={room.id}
+              roomid={room.id}
+              name={user.name}
+              roomname={user.name}
+              onClick={this.handleRoomClick}
+            >
+              <Icon
+                color={user.socketId ? "green" : null}
+                name={user.socketId ? "circle" : "circle outline"}
+              />
+              {user.name}
+            </Menu.Item>
+          </React.Fragment>
+        );
+      });
+    }
   }
 
   render() {
@@ -126,6 +177,7 @@ class ChatSidebar extends Component {
               inverted
             />
           </Menu.Header>
+          <Menu.Menu>{this.renderDirectMessages()}</Menu.Menu>
         </Menu.Item>
         <Menu.Item onClick={this.handleLogoutClick}>Logout</Menu.Item>
       </div>
