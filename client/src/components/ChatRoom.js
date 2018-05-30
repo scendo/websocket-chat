@@ -190,7 +190,7 @@ class Chatroom extends Component {
 }
 const mapStateToProps = state => ({
   auth: state.auth,
-  currentUser: state.auth.user,
+  currentUser: state.currentUser,
   socket: state.socket,
   users: state.users,
   rooms: state.rooms,

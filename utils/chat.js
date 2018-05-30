@@ -2,6 +2,7 @@ const uniqid = require("uniqid");
 const promisify = require("es6-promisify");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const UserMeta = mongoose.model("UserMeta");
 const Room = mongoose.model("Room");
 const Message = mongoose.model("Message");
 
@@ -17,14 +18,22 @@ const Message = mongoose.model("Message");
  *  Messages in the room
  *
  */
-initChatService = async ({ socketId, currentUserId }) => {
+const initChatService = async ({ socketId, currentUserId }) => {
   const channels = [];
   const direct = [];
 
   const currentUserPromise = User.findByIdAndUpdate(
     currentUserId,
     { socketId },
-    { new: true }
+    {
+      select: {
+        rooms: 1,
+        name: 1,
+        socketId: 1,
+        metaData: 1
+      },
+      new: true
+    }
   );
   const defaultRoomPromise = Room.findOne({
     name: "Community",
@@ -46,6 +55,13 @@ initChatService = async ({ socketId, currentUserId }) => {
       metaData: 1
     }
   );
+  const currentUserMetaPromise = UserMeta.find(
+    { userId: currentUserId },
+    {
+      key: 1,
+      value: 1
+    }
+  );
   const roomsPromise = Room.find({
     _id: { $in: [defaultRoom.id, ...currentUser.rooms] }
   });
@@ -54,15 +70,48 @@ initChatService = async ({ socketId, currentUserId }) => {
       $in: defaultRoom.messages
     }
   });
-  const [usersRooms, allUsers, messagesInRoom] = await Promise.all([
+  const [
+    currentUserMeta,
+    usersRooms,
+    allUsers,
+    messagesInRoom
+  ] = await Promise.all([
+    currentUserMetaPromise,
     roomsPromise,
     allUsersPromise,
     messagesPromise
   ]).catch(e => console.log(e));
 
+  const { users, userMeta, messages, rooms } = formatChatServiceData({
+    allUsers,
+    currentUserMeta,
+    messagesInRoom,
+    usersRooms
+  });
+
+  return {
+    currentUser: { ...currentUser.toJSON(), metaData: userMeta },
+    users,
+    room: defaultRoom,
+    rooms,
+    messages
+  };
+};
+
+const formatChatServiceData = ({
+  allUsers,
+  currentUserMeta,
+  messagesInRoom,
+  usersRooms
+}) => {
   //Reduce the arrays into key value objects
   const users = allUsers.reduce((obj, user) => {
     return { ...obj, [user.id]: user.toJSON() };
+  }, {});
+
+  const userMeta = currentUserMeta.reduce((obj, userMeta) => {
+    console.log(userMeta);
+    return { ...obj, [userMeta.key]: userMeta.value };
   }, {});
 
   const messages = messagesInRoom.reduce((obj, message) => {
@@ -90,16 +139,16 @@ initChatService = async ({ socketId, currentUserId }) => {
 
   return {
     users,
-    room: defaultRoom,
-    rooms,
-    messages
+    userMeta,
+    messages,
+    rooms
   };
 };
 
 /**
  * Returns the room and messages in the room
  */
-getRoomData = async roomId => {
+const getRoomData = async roomId => {
   const room = await Room.findById(roomId);
 
   const messages = await Message.find({

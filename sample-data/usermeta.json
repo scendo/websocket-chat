@@ -1,0 +1,16 @@
+[
+  {
+    "userId": "5af49b643049be056efeb861",
+    "key": "room_5b006abf7863a528dffd05d3",
+    "value": {
+      "unreadMessageCount": 3
+    }
+  },
+  {
+    "userId": "5af49b703049be056efeb862",
+    "key": "room_5b006abf7863a528dffd05d3",
+    "value": {
+      "unreadMessageCount": 1
+    }
+  }
+]

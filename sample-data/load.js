@@ -9,6 +9,7 @@ mongoose.Promise = global.Promise;
 const Message = require("../models/Message");
 const Room = require("../models/Room");
 const User = require("../models/User");
+const UserMeta = require("../models/UserMeta");
 
 // read and parse sample data json
 const messages = JSON.parse(
@@ -16,17 +17,22 @@ const messages = JSON.parse(
 );
 const rooms = JSON.parse(fs.readFileSync(__dirname + "/rooms.json", "utf-8"));
 const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
+const usermeta = JSON.parse(
+  fs.readFileSync(__dirname + "/usermeta.json", "utf-8")
+);
 
 const loadData = async () => {
   try {
     const insertMessagePromise = Message.insertMany(messages);
     const insertRoomPromise = Room.insertMany(rooms);
     const insertUserPromise = User.insertMany(users);
+    const insertUserMetaPromise = UserMeta.insertMany(usermeta);
 
     await Promise.all([
       insertMessagePromise,
       insertRoomPromise,
-      insertUserPromise
+      insertUserPromise,
+      insertUserMetaPromise
     ]).catch(e => console.log(e));
 
     console.log("loading sample data... complete!");
@@ -44,11 +50,13 @@ const deleteData = async () => {
   const removeMessagesPromise = Message.remove();
   const removeRoomsPromise = Room.remove();
   const removeUsersPromise = User.remove();
+  const removeUserMetaPromise = UserMeta.remove();
 
   await Promise.all([
     removeMessagesPromise,
     removeRoomsPromise,
-    removeUsersPromise
+    removeUsersPromise,
+    removeUserMetaPromise
   ]).catch(e => console.log(e));
 
   console.log("Data successfully deleted!");

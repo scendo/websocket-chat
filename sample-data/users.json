@@ -5,12 +5,7 @@
     "name": "test",
     "email": "test@mail.com",
     "password": "$2b$10$K04F/IvAyiL0tdtnKhG03OpQOJUr.9JrS2L/VLE4DuDUWRkz9KG/i",
-    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"],
-    "metaData": {
-      "room_5b006abf7863a528dffd05d3": {
-        "unreadMessageCount": 3
-      }
-    }
+    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"]
   },
   {
     "_id": "5af49b703049be056efeb862",
@@ -18,12 +13,7 @@
     "name": "james",
     "email": "james@mail.com",
     "password": "$2b$10$Y.dEqExAaCWfM89K/imbL.ngct89rTk77qZafYBiqlLQa0tGqzTOi",
-    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"],
-    "metaData": {
-      "room_5b006abf7863a528dffd05d3": {
-        "unreadMessageCount": 0
-      }
-    }
+    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"]
   },
   {
     "_id": "5af4af8bf4beb512b3d63ceb",
@@ -31,8 +21,7 @@
     "name": "Peter",
     "email": "peter@mail.com",
     "password": "$2b$10$UDJlLMK.TSMpwE1O2pWqLec/MgxjcsEj6f4Em0.HDUnyjqRv0NdIm",
-    "rooms": [],
-    "metaData": {}
+    "rooms": []
   },
   {
     "_id": "5af4b2674babc8159c7e8c0d",
@@ -40,8 +29,7 @@
     "name": "Abe",
     "email": "abe@mail.com",
     "password": "$2b$10$jIExRqFAYrgYSWo4kqYEXelorjx.8h5jyZPd7xtKvqtyrQwae6nQe",
-    "rooms": [],
-    "metaData": {}
+    "rooms": []
   },
   {
     "_id": "5af4b2814babc8159c7e8c0e",
@@ -49,8 +37,7 @@
     "name": "Lara",
     "email": "lara@mail.com",
     "password": "$2b$10$DuskXvmmx0y5k.DekCn/YOisN0zOnJsjRhOUgRURpDXRKn2h0EB0y",
-    "rooms": [],
-    "metaData": {}
+    "rooms": []
   },
   {
     "_id": "5af4b2964babc8159c7e8c0f",
@@ -58,7 +45,6 @@
     "name": "Tan",
     "email": "tan@mail.com",
     "password": "$2b$10$VxotCvX7uHxgj1Ahsb3wLeTKVhd3UtKBM6HYYTE1UefgZ6NIG/mnS",
-    "rooms": [],
-    "metaData": {}
+    "rooms": []
   }
 ]

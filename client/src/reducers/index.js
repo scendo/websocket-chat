@@ -4,6 +4,7 @@
 import { combineReducers } from "redux";
 
 import auth from "./auth";
+import currentUser from "./currentUser";
 import socket from "./socket";
 import users from "./users";
 import rooms from "./rooms";
@@ -12,6 +13,7 @@ import messages from "./messages";
 
 const rootReducer = combineReducers({
   auth,
+  currentUser,
   socket,
   users,
   rooms,

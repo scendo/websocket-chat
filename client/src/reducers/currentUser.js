@@ -5,26 +5,29 @@ import {
   ROOM_OPEN
 } from "../actions/types";
 
-const defaultState = {
-  isAuthenticated: false,
-  user: {}
-};
+const defaultState = {};
 
 export default function(state = defaultState, action) {
   switch (action.type) {
     case USER_LOGGED_IN:
     case SET_CURRENT_USER:
-      return {
-        isAuthenticated: Object.keys(action.payload).length > 0 ? true : false,
-        user: action.payload
-      };
+      return action.payload;
 
     case USER_LOGGED_OUT:
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: {}
+      return {};
+
+    case ROOM_OPEN:
+      const { socket, currentUser } = action.payload;
+
+      const newState = {
+        ...currentUser
       };
+
+      if (socket) {
+        newState.socketId = socket.id;
+      }
+
+      return newState;
 
     default:
       return state;
