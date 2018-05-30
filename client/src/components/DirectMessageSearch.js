@@ -135,7 +135,6 @@ class DirectMessageSearch extends Component {
         <Input
           className="direct-message-search-input"
           size="huge"
-          action="Go"
           placeholder="Find or start a conversation"
           onChange={this.handleInputChange}
           value={this.state.inputValue}

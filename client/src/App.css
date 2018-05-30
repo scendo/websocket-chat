@@ -107,3 +107,6 @@ body {
   float: none;
   cursor: pointer;
 }
+#chat-add-direct-message .direct-message-search-input {
+  width: 100%;
+}
