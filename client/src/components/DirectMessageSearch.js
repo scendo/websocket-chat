@@ -21,9 +21,13 @@ class DirectMessageSearch extends Component {
   }
 
   getMatchedUsers(users, inputValue) {
+    const { currentUser } = this.props;
     const upperCaseInputValue = inputValue.toUpperCase();
 
-    return Object.values(users).filter((user, index) => {
+    //Remove the current user from matched users
+    const { [currentUser.id]: removedUser, ...remainingUsers } = users;
+
+    return Object.values(remainingUsers).filter((user, index) => {
       if (user.name.toUpperCase().indexOf(upperCaseInputValue) !== -1)
         return user;
     });
@@ -54,27 +58,24 @@ class DirectMessageSearch extends Component {
     const directRooms = getRoomsByGroup(rooms, "direct");
     const directMessage = getDirectMessage(directRooms, userid);
     setMenuVisibility(false);
-    
-    if (directMessage) {
 
+    if (directMessage) {
       soa.openRoom(
         {
           socket,
           currentUserId: currentUser.id,
           roomId: directMessage.id
-
         },
-        (response) => {
-
-          if(response.success){
-            const {activeRoom, messages} = response.data;
+        response => {
+          if (response.success) {
+            const { activeRoom, messages } = response.data;
 
             const updatedRoom = setDirectMessageName({
               room: activeRoom,
               currentUser,
               users
             });
-            
+
             openChatRoom({
               room: updatedRoom,
               messages
@@ -83,7 +84,7 @@ class DirectMessageSearch extends Component {
             showRoom();
           }
         }
-      )
+      );
     } else {
       //create
       soa.createRoom(
@@ -115,7 +116,6 @@ class DirectMessageSearch extends Component {
         }
       );
     }
-    
   }
 
   render() {
