@@ -120,8 +120,17 @@ class ChatSidebar extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+
     return (
       <div id="chat-sidebar">
+        <Menu.Item>
+          <Icon
+            color={currentUser.socketId ? "green" : null}
+            name={currentUser.socketId ? "circle" : "circle outline"}
+          />
+          <Menu.Header as="h4">{currentUser.name}</Menu.Header>
+        </Menu.Item>
         <Menu.Item>
           <Menu.Header as="h2">
             Channels
