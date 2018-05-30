@@ -108,8 +108,9 @@ class ChatSidebar extends Component {
           (userId, index) => userId !== currentUser.id
         );
         const user = users[userId];
-        const roomMeta =
-          user.metaData !== undefined ? user.metaData[`room_${room.id}`] : {};
+        const roomMeta = currentUser.metaData[`room_${room.id}`]
+          ? currentUser.metaData[`room_${room.id}`]
+          : {};
 
         return (
           <React.Fragment key={room.id}>
