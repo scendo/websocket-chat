@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, Form } from "semantic-ui-react";
+import { List, Form, Divider } from "semantic-ui-react";
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
@@ -95,36 +95,41 @@ class ChatWindow extends Component {
     this.messageListBottom.scrollIntoView({ behavior: "instant" });
   }
 
+  renderMessageGroup(dateGroup) {
+    const { users } = this.props;
+
+    return dateGroup.map((message, index) => {
+      const timeStamp = new Date(message.created).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      return (
+        <List.Item key={message.id} className="room-message">
+          <List.Header>
+            <span className="room-message-username">
+              {users[message.user].name}
+            </span>
+            <span className="room-message-timestamp">{timeStamp}</span>
+          </List.Header>
+          <List.Content>{message.value}</List.Content>
+        </List.Item>
+      );
+    });
+  }
+
   render() {
     const { users, messages } = this.props;
     const messagesByDate = this.groupMessagesByDate(messages);
-    console.log(messagesByDate);
+
     return (
       <div>
         <div id="chat-window">
           <List id="messages">
-            {Object.values(messages).map((message, index) => {
-              const timeStamp = new Date(message.created).toLocaleTimeString(
-                "en-US",
-                {
-                  hour: "2-digit",
-                  minute: "2-digit"
-                }
-              );
-
+            {Object.keys(messagesByDate).map((dateGroup, index) => {
               return (
-                <React.Fragment key={message.id}>
-                  <List.Item key={message.id} className="room-message">
-                    <List.Header>
-                      <span className="room-message-username">
-                        {users[message.user].name}
-                      </span>
-                      <span className="room-message-timestamp">
-                        {timeStamp}
-                      </span>
-                    </List.Header>
-                    <List.Content>{message.value}</List.Content>
-                  </List.Item>
+                <React.Fragment key={dateGroup}>
+                  <Divider horizontal>{dateGroup}</Divider>
+                  {this.renderMessageGroup(messagesByDate[dateGroup])}
                 </React.Fragment>
               );
             })}
