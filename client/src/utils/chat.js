@@ -22,7 +22,7 @@ export const getRoomsByGroup = (rooms, group) => {
  */
 export const getDirectMessage = (directRooms, userId) => {
   return Object.values(directRooms).find((room, index) => {
-    return !isUserInRoom(room);
+    return isUserInRoom(room, userId);
   });
 };
 
