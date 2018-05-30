@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Menu, Popup, Button, Icon } from "semantic-ui-react";
+import { Menu, Popup, Button, Icon, Label } from "semantic-ui-react";
 import { logoutUser } from "../actions/auth";
 import soa from "../utils/socketActions";
 import { setDirectMessageName } from "../utils/chat";
@@ -60,6 +60,17 @@ class ChatSidebar extends Component {
     this.props.logoutUser();
   }
 
+  renderUnreadMessagesLabel(unreadMessageCount) {
+    if (unreadMessageCount === 0 || unreadMessageCount === undefined) {
+      return null;
+    }
+    return (
+      <Label className="unread-messages-label" color="red">
+        {unreadMessageCount}
+      </Label>
+    );
+  }
+
   renderChannels() {
     const { rooms } = this.props;
 
@@ -97,6 +108,8 @@ class ChatSidebar extends Component {
           (userId, index) => userId !== currentUser.id
         );
         const user = users[userId];
+        const roomMeta =
+          user.metaData !== undefined ? user.metaData[`room_${room.id}`] : {};
 
         return (
           <React.Fragment key={room.id}>
@@ -112,6 +125,7 @@ class ChatSidebar extends Component {
                 name={user.socketId ? "circle" : "circle outline"}
               />
               {user.name}
+              {this.renderUnreadMessagesLabel(roomMeta.unreadMessageCount)}
             </Menu.Item>
           </React.Fragment>
         );

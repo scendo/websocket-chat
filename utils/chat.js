@@ -42,7 +42,8 @@ initChatService = async ({ socketId, currentUserId }) => {
     {
       rooms: 1,
       name: 1,
-      socketId: 1
+      socketId: 1,
+      metaData: 1
     }
   );
   const roomsPromise = Room.find({
