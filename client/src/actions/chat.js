@@ -1,4 +1,4 @@
-import { ROOM_OPEN, ROOM_ADD, MESSAGE_ADD } from "./types";
+import { ROOM_OPEN, ROOM_ADD, MESSAGE_ADD, MESSAGE_ADD_UNREAD } from "./types";
 
 /**
  * Action to initialize a chatroom/private message
@@ -22,9 +22,16 @@ export const addRoom = room => {
   };
 };
 
-export const addMessageToRoom = (room, message) => {
+export const addMessageToRoom = ({ room, message }) => {
   return {
     type: MESSAGE_ADD,
     payload: { room, message }
+  };
+};
+
+export const addUnreadMessage = ({ room, currentUser }) => {
+  return {
+    type: MESSAGE_ADD_UNREAD,
+    payload: { room, currentUser }
   };
 };
