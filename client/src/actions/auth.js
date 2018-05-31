@@ -26,8 +26,11 @@ export const registerUser = (userData, history) => dispatch => {
       history.push("/");
     })
     .catch(err => {
-      console.log(err);
-      console.log(err.response);
+      const errors = err.response.data;
+      dispatch({
+        type: REGISTER_ERROR,
+        payload: { errors }
+      });
     });
 };
 
