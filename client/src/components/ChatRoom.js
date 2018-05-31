@@ -76,12 +76,19 @@ class Chatroom extends Component {
    */
   initSocketEvents(socket) {
     if (socket) {
-      const { currentUser } = this.props;
-
       socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
+        const { currentUser, activeRoom } = this.props;
+
         //If client's actively in the room of the sent message, then add it to the current room
-        if (this.props.activeRoom.id === room.id) {
-          this.props.addMessageToRoom(room, message);
+        if (activeRoom.id === room.id) {
+          this.props.addMessageToRoom({ room, message });
+        } else if (currentUser.rooms.includes(room.id)) {
+          this.props.addUnreadMessage({
+            room,
+            currentUser
+          });
+          soa.addUnreadMessage({ socket, userId: currentUser.id, room });
+        } else {
         }
       });
 
@@ -92,6 +99,7 @@ class Chatroom extends Component {
        * can access the room without refreshing the browser
        */
       socket.on("ROOM_CREATED", ({ room }) => {
+        const { currentUser } = this.props;
         if (room.users.includes(currentUser.id)) {
           this.props.addRoom(room);
         }
