@@ -21,10 +21,22 @@ class RegisterForm extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      passwordconfirm: this.state.passwordconfirm
+    };
   }
 
   render() {
@@ -80,7 +92,12 @@ class RegisterForm extends Component {
                   placeholder="Confirm Password"
                   type="password"
                 />
-                <Button color="teal" fluid size="large">
+                <Button
+                  color="teal"
+                  fluid
+                  size="large"
+                  onClick={this.handleSubmit}
+                >
                   Submit
                 </Button>
               </Segment>
