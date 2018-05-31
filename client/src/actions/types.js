@@ -8,4 +8,5 @@ export const ROOM_ADD = "ROOM_ADD";
 
 //Messages
 export const MESSAGE_ADD = "MESSAGE_ADD";
+export const MESSAGE_ADD_UNREAD = "MESSAGE_ADD_UNREAD";
 export const MESSAGE_ADDED = "MESSAGE_ADDED";
