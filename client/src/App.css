@@ -13,6 +13,11 @@ body > div > div > div.register-form {
   height: 100%;
 }
 
+/* Register From */
+.register-form .ui.error.message {
+  padding: 5% 15%;
+}
+
 #chatroom .ui.menu {
   margin: 0 !important;
 }
