@@ -1,6 +1,12 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { USER_LOGGED_IN, USER_LOGGED_OUT, SET_CURRENT_USER } from "./types";
+import {
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  SET_CURRENT_USER,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR
+} from "./types";
 
 /**
  * Register the user
@@ -14,6 +20,9 @@ export const registerUser = (userData, history) => dispatch => {
     .post("/api/v1/register", userData)
     .then(res => {
       console.log(res);
+      dispatch({
+        type: REGISTER_SUCCESS
+      });
       history.push("/login");
     })
     .catch(err => {
