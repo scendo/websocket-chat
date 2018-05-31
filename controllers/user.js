@@ -45,7 +45,7 @@ exports.validateRegister = (req, res, next) => {
     .equals(req.body.password);
   const errors = req.validationErrors();
   if (errors) {
-    res.status("500").json(errors);
+    res.status(400).json(errors);
     return;
   }
   next();
@@ -65,7 +65,7 @@ exports.register = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (user) {
-    return res.status(500).json([{ msg: "Please try again" }]);
+    return res.status(400).json([{ msg: "Please try again" }]);
   }
 
   //salt and hash the password
