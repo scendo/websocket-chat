@@ -110,7 +110,6 @@ const formatChatServiceData = ({
   }, {});
 
   const userMeta = currentUserMeta.reduce((obj, userMeta) => {
-    console.log(userMeta);
     return { ...obj, [userMeta.key]: userMeta.value };
   }, {});
 
