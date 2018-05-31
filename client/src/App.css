@@ -6,6 +6,12 @@
 body {
   font: 13px Lato, Helvetica, Arial;
 }
+body > div,
+body > div > div,
+body > div > div > div.login-form,
+body > div > div > div.register-form {
+  height: 100%;
+}
 
 #chatroom .ui.menu {
   margin: 0 !important;
