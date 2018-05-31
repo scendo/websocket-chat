@@ -25,12 +25,15 @@ class RegisterForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * Check the store for registration errors and update the state.errors if found
+   */
   componentWillReceiveProps(nextProps, prevState) {
-    console.log(nextProps);
     if (
       nextProps.errors.type !== undefined &&
       nextProps.errors.type === "register"
     ) {
+      //Format the errors into an array to work with Message component
       const errors = nextProps.errors.data.reduce((arr, error) => {
         return [...arr, error.msg];
       }, []);
@@ -39,6 +42,9 @@ class RegisterForm extends Component {
     }
   }
 
+  /**
+   * Update the corresponding input name/value in state on input change
+   */
   handleInputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -46,6 +52,9 @@ class RegisterForm extends Component {
     });
   }
 
+  /**
+   * Prepare the registration data and trigger the registerUser redux action
+   */
   handleSubmit(e) {
     e.preventDefault();
 
