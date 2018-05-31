@@ -79,8 +79,20 @@ const createRoom = ({ socket, group, name, users }, callback) => {
   );
 };
 
+/**
+ * Emits MESSAGE_ADD_UNREAD to increment the unreadMessageCount in UserMeta for a room
+ *
+ * @param {Object} socket
+ * @param {Object} userId
+ * @param {Object} room
+ */
+const addUnreadMessage = ({ socket, userId, room }) => {
+  socket.emit("MESSAGE_ADD_UNREAD", { userId, room });
+};
+
 export default {
   startChatService,
   openRoom,
-  createRoom
+  createRoom,
+  addUnreadMessage
 };
