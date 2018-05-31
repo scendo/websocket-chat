@@ -17,7 +17,8 @@ class LoginForm extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: []
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,6 +32,17 @@ class LoginForm extends Component {
   }
 
   componentWillReceiveProps(nextProps, prevState) {
+    if (
+      nextProps.errors.type !== undefined &&
+      nextProps.errors.type === "login"
+    ) {
+      //Format the errors into an array to work with Message component
+      const errors = nextProps.errors.data.reduce((arr, error) => {
+        return [...arr, error.msg];
+      }, []);
+
+      this.setState({ errors });
+    }
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/chatroom");
     }
@@ -39,7 +51,10 @@ class LoginForm extends Component {
   handleInputChange(e) {
     const { name, value } = e.target;
 
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+      errors: []
+    });
   }
 
   handleSubmit(e) {
@@ -61,6 +76,12 @@ class LoginForm extends Component {
             <Header as="h2" color="teal" textAlign="center">
               Log-in to your account
             </Header>
+            <Message
+              hidden={!this.state.errors.length > 0 ? true : false}
+              error
+              header="There was an error with your submission"
+              list={this.state.errors}
+            />
             <Form size="large">
               <Segment stacked>
                 <Form.Input
@@ -103,7 +124,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { loginUser })(LoginForm);

@@ -60,7 +60,6 @@ export const loginUser = (email, password) => dispatch => {
       });
     })
     .catch(err => {
-      console.log(err.response.data);
       const errors = err.response.data;
       dispatch({
         type: LOGIN_ERROR,

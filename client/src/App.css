@@ -13,7 +13,8 @@ body > div > div > div.register-form {
   height: 100%;
 }
 
-/* Register From */
+/* Login/Register From */
+.login-form .ui.error.message,
 .register-form .ui.error.message {
   padding: 5% 15%;
 }
