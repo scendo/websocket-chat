@@ -19,6 +19,12 @@ class RegisterForm extends Component {
       passwordconfirm: "",
       errors: []
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -38,6 +44,8 @@ class RegisterForm extends Component {
               <Segment stacked>
                 <Form.Input
                   name="name"
+                  onChange={this.handleInputChange}
+                  value={this.state.name}
                   fluid
                   icon="user"
                   iconPosition="left"
@@ -45,6 +53,8 @@ class RegisterForm extends Component {
                 />
                 <Form.Input
                   name="email"
+                  onChange={this.handleInputChange}
+                  value={this.state.email}
                   fluid
                   icon="mail"
                   iconPosition="left"
@@ -52,6 +62,8 @@ class RegisterForm extends Component {
                 />
                 <Form.Input
                   name="password"
+                  onChange={this.handleInputChange}
+                  value={this.state.password}
                   fluid
                   icon="lock"
                   iconPosition="left"
@@ -60,13 +72,14 @@ class RegisterForm extends Component {
                 />
                 <Form.Input
                   name="passwordconfirm"
+                  onChange={this.handleInputChange}
+                  value={this.state.passwordconfirm}
                   fluid
                   icon="lock"
                   iconPosition="left"
                   placeholder="Confirm Password"
                   type="password"
                 />
-
                 <Button color="teal" fluid size="large">
                   Submit
                 </Button>
