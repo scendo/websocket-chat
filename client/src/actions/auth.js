@@ -23,7 +23,7 @@ export const registerUser = (userData, history) => dispatch => {
       dispatch({
         type: REGISTER_SUCCESS
       });
-      history.push("/login");
+      history.push("/");
     })
     .catch(err => {
       console.log(err);
