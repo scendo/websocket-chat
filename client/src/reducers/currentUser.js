@@ -2,34 +2,72 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   SET_CURRENT_USER,
-  ROOM_OPEN
+  ROOM_OPEN,
+  MESSAGE_ADD,
+  MESSAGE_ADD_UNREAD
 } from "../actions/types";
 
 const defaultState = {};
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case USER_LOGGED_IN:
-    case SET_CURRENT_USER:
-      return action.payload;
-
     case USER_LOGGED_OUT:
       return {};
 
     case ROOM_OPEN:
-      const { socket, currentUser } = action.payload;
+      const { socket, currentUser, room } = action.payload;
 
-      const newState = {
+      const updatedState = {
         ...currentUser
       };
 
       if (socket) {
-        newState.socketId = socket.id;
+        updatedState.socketId = socket.id;
       }
 
-      return newState;
+      return resetMessageCount(updatedState, room.id);
+
+    case MESSAGE_ADD_UNREAD: {
+      const { room, currentUser, read } = action.payload;
+
+      return incrementMessageCount(state, room.id);
+    }
 
     default:
       return state;
   }
 }
+
+/**
+ * incremements unreadMessageCount in userMeta for a given room
+ */
+const incrementMessageCount = (state, roomId) => {
+  const metaKey = `room_${roomId}`;
+
+  return {
+    ...state,
+    metaData: {
+      [metaKey]: {
+        ...state.metaData[metaKey],
+        unreadMessageCount: (state.metaData[metaKey].unreadMessageCount += 1)
+      }
+    }
+  };
+};
+
+/**
+ * Resets unreadMessageCount to 0 in userMeta for a given room
+ */
+const resetMessageCount = (state, roomId) => {
+  const metaKey = `room_${roomId}`;
+
+  return {
+    ...state,
+    metaData: {
+      ...state.metaData,
+      [metaKey]: {
+        unreadMessageCount: 0
+      }
+    }
+  };
+};
