@@ -12,7 +12,12 @@ import {
   Grid
 } from "semantic-ui-react";
 import soa from "../utils/socketActions";
-import { openChatRoom, addRoom, addMessageToRoom } from "../actions/chat";
+import {
+  openChatRoom,
+  addRoom,
+  addMessageToRoom,
+  addUnreadMessage
+} from "../actions/chat";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
@@ -201,5 +206,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   openChatRoom,
   addRoom,
-  addMessageToRoom
+  addMessageToRoom,
+  addUnreadMessage
 })(Chatroom);
