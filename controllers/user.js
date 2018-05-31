@@ -65,8 +65,7 @@ exports.register = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (user) {
-    errors.email = "Email already exists";
-    return res.status(400).json(errors);
+    return res.status(500).json([{ msg: "Please try again" }]);
   }
 
   //salt and hash the password
