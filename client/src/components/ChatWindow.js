@@ -38,7 +38,7 @@ class ChatWindow extends Component {
         response => {
           if (response.success) {
             const { room, message } = response.data;
-            addMessageToRoom(room, message);
+            addMessageToRoom({ room, message });
           }
         }
       );
