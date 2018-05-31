@@ -10,6 +10,7 @@ import users from "./users";
 import rooms from "./rooms";
 import activeRoom from "./activeRoom";
 import messages from "./messages";
+import errors from "./errors";
 
 const rootReducer = combineReducers({
   auth,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   users,
   rooms,
   activeRoom,
-  messages
+  messages,
+  errors
 });
 
 export default rootReducer;

@@ -25,6 +25,20 @@ class RegisterForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps, prevState) {
+    console.log(nextProps);
+    if (
+      nextProps.errors.type !== undefined &&
+      nextProps.errors.type === "register"
+    ) {
+      const errors = nextProps.errors.data.reduce((arr, error) => {
+        return [...arr, error.msg];
+      }, []);
+
+      this.setState({ errors });
+    }
+  }
+
   handleInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -55,6 +69,12 @@ class RegisterForm extends Component {
               {" "}
               Register
             </Header>
+            <Message
+              hidden={!this.state.errors.length > 0 ? true : false}
+              error
+              header="There was an error with your submission"
+              list={this.state.errors}
+            />
             <Form size="large">
               <Segment stacked>
                 <Form.Input
@@ -111,5 +131,8 @@ class RegisterForm extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  errors: state.errors
+});
 
-export default connect(null, { registerUser })(RegisterForm);
+export default connect(mapStateToProps, { registerUser })(RegisterForm);

@@ -29,7 +29,7 @@ export const registerUser = (userData, history) => dispatch => {
       const errors = err.response.data;
       dispatch({
         type: REGISTER_ERROR,
-        payload: { errors }
+        payload: errors
       });
     });
 };
