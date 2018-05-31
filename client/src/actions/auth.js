@@ -1,9 +1,10 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {
+  SET_CURRENT_USER,
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
-  SET_CURRENT_USER,
+  LOGIN_ERROR,
   REGISTER_SUCCESS,
   REGISTER_ERROR
 } from "./types";
@@ -58,8 +59,13 @@ export const loginUser = (email, password) => dispatch => {
         payload: jwtDecoded
       });
     })
-    .catch(error => {
-      console.log(error.response);
+    .catch(err => {
+      console.log(err.response.data);
+      const errors = err.response.data;
+      dispatch({
+        type: LOGIN_ERROR,
+        payload: errors
+      });
     });
 };
 

@@ -15,14 +15,13 @@ const config = require("../config/application");
  * @param {*} res
  */
 exports.login = async (req, res) => {
-  const errors = {};
   const { email, password } = req.body;
+  const errorMsg = "The User Email or Password is Incorrect";
 
   const user = await User.findOne({ email });
 
   if (!user) {
-    errors.login = "The User Email or Password is Incorrect";
-    return res.status(400).json(errors);
+    return res.status(400).json([{ msg: errorMsg }]);
   }
 
   const passwordsMatch = await bcrypt.compare(password, user.password);
@@ -39,7 +38,6 @@ exports.login = async (req, res) => {
       token: "Bearer " + token
     });
   } else {
-    errors.login = "The User Email or Password is Incorrect";
-    return res.status(400).json(errors);
+    return res.status(400).json([{ msg: errorMsg }]);
   }
 };
