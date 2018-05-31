@@ -8,6 +8,7 @@ import {
   Segment,
   Message
 } from "semantic-ui-react";
+import { registerUser } from "../actions/auth";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -37,6 +38,8 @@ class RegisterForm extends Component {
       password: this.state.password,
       passwordconfirm: this.state.passwordconfirm
     };
+
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
@@ -109,4 +112,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(null, {})(RegisterForm);
+export default connect(null, { registerUser })(RegisterForm);

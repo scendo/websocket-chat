@@ -1,6 +1,27 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { USER_LOGGED_IN, USER_LOGGED_OUT, SET_CURRENT_USER } from "./types";
+
+/**
+ * Register the user
+ *
+ * On succes, redirect to the login page.
+ *
+ * On error, dispatch a registration error
+ */
+export const registerUser = (userData, history) => dispatch => {
+  axios
+    .post("/api/v1/register", userData)
+    .then(res => {
+      console.log(res);
+      history.push("/login");
+    })
+    .catch(err => {
+      console.log(err);
+      console.log(err.response);
+    });
+};
+
 /**
  * Log the user in
  *

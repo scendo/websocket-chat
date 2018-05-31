@@ -80,7 +80,7 @@ exports.register = async (req, res) => {
   });
 
   if (newUser) {
-    res.status(200);
+    res.json({ success: true });
   }
   res.status(500);
 };
