@@ -18,6 +18,7 @@ import {
   addMessageToRoom,
   addUnreadMessage
 } from "../actions/chat";
+import { logoutUser } from "../actions/auth";
 import Navbar from "./Navbar";
 import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
@@ -50,6 +51,7 @@ class Chatroom extends Component {
     this.handleAddDirectMessageClick = this.handleAddDirectMessageClick.bind(
       this
     );
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.showRoom = this.showRoom.bind(this);
     this.setMenuVisibility = this.setMenuVisibility.bind(this);
   }
@@ -147,6 +149,22 @@ class Chatroom extends Component {
   }
 
   /**
+   * Logs the user out, clearing all user specific data in the redux store
+   *
+   * Disconnect the socket
+   *
+   * @param {*} e
+   */
+  handleLogoutClick(e) {
+    e.preventDefault();
+
+    const { socket } = this.props;
+
+    this.props.logoutUser();
+    socket.disconnect();
+  }
+
+  /**
    * Used to exit one of the setting Components and renders the chatroom instead
    * ie: CreateChannel
    */
@@ -194,7 +212,11 @@ class Chatroom extends Component {
 
     return (
       <div id="chatroom">
-        <Navbar handleMenuClick={this.handleMenuClick} />
+        <Navbar
+          currentUser={currentUser}
+          handleMenuClick={this.handleMenuClick}
+          handleLogoutClick={this.handleLogoutClick}
+        />
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             id="chat-sidebar"
@@ -207,7 +229,11 @@ class Chatroom extends Component {
             vertical
           >
             <ChatSidebar
-              {...this.props}
+              socket={this.props.socket}
+              currentUser={this.props.currentUser}
+              users={this.props.users}
+              rooms={this.props.rooms}
+              openChatRoom={this.props.openChatRoom}
               setMenuVisibility={this.setMenuVisibility}
               handleCreateChannelClick={this.handleCreateChannelClick}
               handleAddDirectMessageClick={this.handleAddDirectMessageClick}
@@ -238,5 +264,6 @@ export default connect(mapStateToProps, {
   openChatRoom,
   addRoom,
   addMessageToRoom,
-  addUnreadMessage
+  addUnreadMessage,
+  logoutUser
 })(Chatroom);

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Menu, Popup, Button, Icon, Label } from "semantic-ui-react";
-import { logoutUser } from "../actions/auth";
+import { Menu, Dropdown, Popup, Button, Icon, Label } from "semantic-ui-react";
 import soa from "../utils/socketActions";
 import { setDirectMessageName } from "../utils/chat";
 /**
@@ -19,7 +17,6 @@ class ChatSidebar extends Component {
     super(props);
 
     this.handleRoomClick = this.handleRoomClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
   /**
@@ -61,22 +58,6 @@ class ChatSidebar extends Component {
         }
       }
     );
-  }
-
-  /**
-   * Logs the user out, clearing all user specific data in the redux store
-   *
-   * Disconnect the socket
-   *
-   * @param {*} e
-   */
-  handleLogoutClick(e) {
-    e.preventDefault();
-
-    const { socket } = this.props;
-    console.log(socket);
-    this.props.logoutUser();
-    socket.disconnect();
   }
 
   renderUnreadMessagesLabel(unreadMessageCount) {
@@ -155,16 +136,18 @@ class ChatSidebar extends Component {
 
   render() {
     const { currentUser } = this.props;
-
+    const trigger = (
+      <span>
+        <Icon
+          color={currentUser.socketId ? "green" : null}
+          name={currentUser.socketId ? "circle" : "circle outline"}
+        />
+        {currentUser.name}
+        {/* <Menu.Header as="h4">{currentUser.name}</Menu.Header> */}
+      </span>
+    );
     return (
       <div id="chat-sidebar">
-        <Menu.Item>
-          <Icon
-            color={currentUser.socketId ? "green" : null}
-            name={currentUser.socketId ? "circle" : "circle outline"}
-          />
-          <Menu.Header as="h4">{currentUser.name}</Menu.Header>
-        </Menu.Item>
         <Menu.Item>
           <Menu.Header as="h2">
             Channels
@@ -224,15 +207,9 @@ class ChatSidebar extends Component {
           </Menu.Header>
           <Menu.Menu>{this.renderDirectMessages()}</Menu.Menu>
         </Menu.Item>
-        <Menu.Item onClick={this.handleLogoutClick}>Logout</Menu.Item>
       </div>
     );
   }
 }
-const mapStateToProps = state => ({
-  auth: state.auth,
-  socket: state.socket,
-  rooms: state.rooms
-});
 
-export default connect(mapStateToProps, { logoutUser })(ChatSidebar);
+export default ChatSidebar;
