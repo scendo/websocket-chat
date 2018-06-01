@@ -1,5 +1,9 @@
 /**
- * Unsets/deletes a user given an object of users and a userId to unset
+ * remove a user from users
+ *
+ *  - Uses a combination of descructuring and spread operator to maintain immutability while deleting an objects key
+ *  - deconstructing userId as removedUser
+ *  - spreading the remaining key/values as remainingUsers
  *
  * @param {*} users
  * @param {*} userId

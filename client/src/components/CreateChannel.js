@@ -9,22 +9,13 @@ import {
   Dropdown
 } from "semantic-ui-react";
 import soa from "../utils/socketActions";
+import { unsetUser } from "../utils/chat";
 
 class CreateChannel extends Component {
   constructor(props) {
     super(props);
-    /**
-     * remove current user from users
-     *
-     *  - Using a combination of descructuring and spread operator to maintain immutability while deleting an objects key
-     *  - deconstructing props.user.id as currentUser
-     *  - spreading the remaining key/values as remainingUsers
-     *
-     */
-    const {
-      [props.auth.user.id]: currentUser,
-      ...remainingUsers
-    } = props.users;
+
+    const remainingUsers = unsetUser(props.users, props.auth.user.id);
 
     this.state = {
       nameInput: "",
