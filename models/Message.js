@@ -32,4 +32,19 @@ messageSchema.set("toJSON", {
 
 messageSchema.plugin(mongodbErrorHandler);
 
+/**
+ * Convenience model function to fetch an array of messages given an array
+ * of message ids
+ *
+ * @param {Array} messageIds
+ * @returns {Promise} Promise object resulting in an array of messages from mongodb given an array of messageIds
+ */
+messageSchema.statics.getMessages = function(messageIds) {
+  return this.find({
+    _id: {
+      $in: messageIds
+    }
+  });
+};
+
 module.exports = mongoose.model("Message", messageSchema);

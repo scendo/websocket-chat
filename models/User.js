@@ -49,4 +49,28 @@ userSchema.set("toJSON", {
   virtuals: true
 });
 
+/**
+ * Get all of the users and limits the fields only to what is necessary
+ *
+ * Fields:
+ *
+ * rooms
+ * name
+ * socketId
+ * metaData
+ *
+ * @returns {Promise} Promise object resulting in an array of Users
+ */
+userSchema.statics.getAllUsers = function() {
+  return this.find(
+    {},
+    {
+      rooms: 1,
+      name: 1,
+      socketId: 1,
+      metaData: 1
+    }
+  );
+};
+
 module.exports = mongoose.model("User", userSchema);

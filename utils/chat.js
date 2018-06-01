@@ -7,21 +7,23 @@ const Room = mongoose.model("Room");
 const Message = mongoose.model("Message");
 
 /**
+ * All of the necessary chat application data needs to be prepared and sent to the client.
  *
- * Client is requesting to start the chat service
- *
- *  Need to serve the initial chat data
- *
- *  All Rooms
- *  All Users?
- *  Default Room
- *  Messages in the room
- *
+ *  - currentUser
+ *  - users
+ *  - rooms
+ *  - room
+ *  - messages
  */
 const initChatService = async ({ socketId, currentUserId }) => {
   const channels = [];
   const direct = [];
 
+  /**
+   * Get currentUser and defaultRoom
+   *
+   * Update the current user w/ the new socketId
+   */
   const currentUserPromise = User.findByIdAndUpdate(
     currentUserId,
     { socketId },
@@ -39,47 +41,24 @@ const initChatService = async ({ socketId, currentUserId }) => {
     name: "Community",
     group: "channel"
   });
-
   const [currentUser, defaultRoom] = await Promise.all([
     currentUserPromise,
     defaultRoomPromise
   ]).catch(e => console.log(e));
 
-  //Fetch all of the chat data for the client
-  const allUsersPromise = User.find(
-    {},
-    {
-      rooms: 1,
-      name: 1,
-      socketId: 1,
-      metaData: 1
-    }
-  );
-  const currentUserMetaPromise = UserMeta.find(
-    { userId: currentUserId },
-    {
-      key: 1,
-      value: 1
-    }
-  );
-  const roomsPromise = Room.find({
-    _id: { $in: [defaultRoom.id, ...currentUser.rooms] }
-  });
-  const messagesPromise = Message.find({
-    _id: {
-      $in: defaultRoom.messages
-    }
-  });
+  /**
+   * Fetch all of the chat data
+   */
   const [
     currentUserMeta,
     usersRooms,
     allUsers,
     messagesInRoom
   ] = await Promise.all([
-    currentUserMetaPromise,
-    roomsPromise,
-    allUsersPromise,
-    messagesPromise
+    UserMeta.getAllUserMeta(currentUser.id),
+    Room.getRooms(currentUser.rooms),
+    User.getAllUsers(),
+    Message.getMessages(defaultRoom.messages)
   ]).catch(e => console.log(e));
 
   const { users, userMeta, messages, rooms } = formatChatServiceData({
@@ -98,6 +77,13 @@ const initChatService = async ({ socketId, currentUserId }) => {
   };
 };
 
+/**
+ * Reduces in the chat service data into objects of key => value pairs
+ *
+ * The data is reduced so the front end can access data faster vs having to loop through
+ * an indefinite array length to find/edit the data.
+ *
+ */
 const formatChatServiceData = ({
   allUsers,
   currentUserMeta,

@@ -28,4 +28,20 @@ userMetaSchema.set("toJSON", {
   virtuals: true
 });
 
+/**
+ * Gets all of the UserMeta for a given user
+ *
+ * @param {number} userId
+ * @returns {Promise} Promise object resulting in an array of UserMeta
+ */
+userMetaSchema.statics.getAllUserMeta = function(userId) {
+  return this.find(
+    { userId },
+    {
+      key: 1,
+      value: 1
+    }
+  );
+};
+
 module.exports = mongoose.model("UserMeta", userMetaSchema);
