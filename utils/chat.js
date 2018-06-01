@@ -24,19 +24,8 @@ const initChatService = async ({ socketId, currentUserId }) => {
    *
    * Update the current user w/ the new socketId
    */
-  const currentUserPromise = User.findByIdAndUpdate(
-    currentUserId,
-    { socketId },
-    {
-      select: {
-        rooms: 1,
-        name: 1,
-        socketId: 1,
-        metaData: 1
-      },
-      new: true
-    }
-  );
+
+  const currentUserPromise = User.updateUserSocketId(currentUserId, socketId);
   const defaultRoomPromise = Room.findOne({
     name: "Community",
     group: "channel"

@@ -50,6 +50,27 @@ userSchema.set("toJSON", {
 });
 
 /**
+ * Update a user's socketId field
+ *
+ * @returns {Promise} Promise object resulting in the updated User
+ */
+userSchema.statics.updateUserSocketId = function(userId, socketId) {
+  return this.findByIdAndUpdate(
+    userId,
+    { socketId },
+    {
+      select: {
+        rooms: 1,
+        name: 1,
+        socketId: 1,
+        metaData: 1
+      },
+      new: true
+    }
+  );
+};
+
+/**
  * Get all of the users and limits the fields only to what is necessary
  *
  * Fields:
