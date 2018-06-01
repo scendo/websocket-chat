@@ -44,4 +44,39 @@ userMetaSchema.statics.getAllUserMeta = function(userId) {
   );
 };
 
+/**
+ * Increments the unreadMessageCount UserMeta field for a given roomId
+ *
+ * @param {*} userId
+ * @param {*} roomId
+ * @returns {Promise} Promise object resulting in an array of UserMeta
+ */
+userMetaSchema.statics.incrementUnreadMessages = function(userId, roomId) {
+  return this.findOneAndUpdate(
+    {
+      userId,
+      key: `room_${roomId}`
+    },
+    { $inc: { "value.unreadMessageCount": 1 } }
+  );
+};
+
+/**
+ * Set the unreadMessageCount UserMeta field for a given roomId to a count/value
+ *
+ * @param {*} userId
+ * @param {*} roomId
+ * @param {*} count
+ * @returns {Promise} Promise object
+ */
+userMetaSchema.statics.setUnreadMessages = function(userId, roomId, count) {
+  return this.findOneAndUpdate(
+    {
+      userId,
+      key: `room_${roomId}`
+    },
+    { $set: { "value.unreadMessageCount": count } }
+  );
+};
+
 module.exports = mongoose.model("UserMeta", userMetaSchema);
