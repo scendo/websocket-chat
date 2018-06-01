@@ -108,4 +108,17 @@ userSchema.statics.getAllUsers = function() {
   );
 };
 
+/**
+ * Add a room to the user
+ *
+ * ie: a user "joins" a room
+ *
+ * @param {*} userId
+ * @param {*} roomId
+ * @returns {Promise} Promise object
+ */
+userSchema.statics.joinRoom = function(userId, roomId) {
+  return this.findByIdAndUpdate(userId, { $addToSet: { rooms: roomId } });
+};
+
 module.exports = mongoose.model("User", userSchema);
