@@ -20,7 +20,6 @@ import {
 } from "../actions/chat";
 import { logoutUser } from "../actions/auth";
 import Navbar from "./Navbar";
-import ChatHeader from "./ChatHeader";
 import ChatSidebar from "./ChatSidebar";
 import ChatWindow from "./ChatWindow";
 import CreateChannel from "./CreateChannel";
@@ -214,6 +213,7 @@ class Chatroom extends Component {
       <div id="chatroom">
         <Navbar
           currentUser={currentUser}
+          activeRoom={this.props.activeRoom}
           handleMenuClick={this.handleMenuClick}
           handleLogoutClick={this.handleLogoutClick}
         />
@@ -241,7 +241,6 @@ class Chatroom extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <ChatHeader activeRoom={activeRoom} />
               <ChatWindow {...this.props} />
             </Segment>
           </Sidebar.Pusher>
