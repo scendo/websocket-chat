@@ -10,7 +10,9 @@ import {
 } from "semantic-ui-react";
 import soa from "../utils/socketActions";
 import { unsetUser } from "../utils/chat";
-
+/**
+ * A form component to create new channels/rooms
+ */
 class CreateChannel extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,13 @@ class CreateChannel extends Component {
     });
   }
 
+  /**
+   * Handle the submission of create channel
+   *
+   * Creates the channel/room and opens the room
+   *
+   * @param {*} e
+   */
   handleSubmit(e) {
     const {
       socket,

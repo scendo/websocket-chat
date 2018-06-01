@@ -3,6 +3,12 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+/**
+ * Blocks the rendering of a component given a matched <route> if the user is not logged in
+ * and redirects the user to LoginForm
+ *
+ * @param {*} param0
+ */
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}

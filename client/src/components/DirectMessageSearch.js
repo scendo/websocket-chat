@@ -7,7 +7,9 @@ import {
   getDirectMessage,
   setDirectMessageName
 } from "../utils/chat";
-
+/**
+ * A form component to create/open a direct message
+ */
 class DirectMessageSearch extends Component {
   constructor(props) {
     super(props);

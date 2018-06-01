@@ -4,7 +4,16 @@ import { Menu, Popup, Button, Icon, Label } from "semantic-ui-react";
 import { logoutUser } from "../actions/auth";
 import soa from "../utils/socketActions";
 import { setDirectMessageName } from "../utils/chat";
-
+/**
+ * Chatroom sidebar which acts as the main menu for the application
+ *
+ * User settings
+ * Create Channel
+ * Add Direct Message
+ * Open Room
+ * Logout
+ *
+ */
 class ChatSidebar extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +63,13 @@ class ChatSidebar extends Component {
     );
   }
 
+  /**
+   * Logs the user out, clearing all user specific data in the redux store
+   *
+   * Disconnect the socket
+   *
+   * @param {*} e
+   */
   handleLogoutClick(e) {
     e.preventDefault();
 

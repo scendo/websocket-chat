@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import { List, Form, Divider } from "semantic-ui-react";
+/**
+ * Handles the Chat Window displaying the room's messages
+ *
+ * Also handles the room's message input field
+ */
 class ChatWindow extends Component {
   constructor(props) {
     super(props);

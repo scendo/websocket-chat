@@ -26,12 +26,14 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
+    //redirect the user to the chatroom if the user logged in successfully
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/chatroom");
     }
   }
 
   componentWillReceiveProps(nextProps, prevState) {
+    //set the login errors in state if found in the redux store
     if (
       nextProps.errors.type !== undefined &&
       nextProps.errors.type === "login"

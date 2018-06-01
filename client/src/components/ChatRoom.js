@@ -25,6 +25,16 @@ import ChatWindow from "./ChatWindow";
 import CreateChannel from "./CreateChannel";
 import DirectMessageSearch from "./DirectMessageSearch";
 
+/**
+ * Chatroom is the main smart component for the application.
+ *
+ * Responsbilities:
+ *
+ *  - create the socket connection between the client and the server
+ *  - handle all socket events emitted from the server socket
+ *  - renders the chat app's other components: ChatHeader, ChatSidebar, ChatWindow, CreateChannel etc.
+ *
+ */
 class Chatroom extends Component {
   constructor(props) {
     super(props);
@@ -107,16 +117,29 @@ class Chatroom extends Component {
     }
   }
 
+  /**
+   * Toggle the menu visibility on click
+   */
   handleMenuClick() {
     this.setMenuVisibility(!this.state.menuVisible);
   }
 
+  /**
+   * Render the Createchannel component on (+) click in the sidebar
+   *
+   * @param {*} e
+   */
   handleCreateChannelClick(e) {
     this.setState({
       createChannel: true
     });
   }
 
+  /**
+   * Render the DirectMessageSearch component on (+) click in the sidebar
+   *
+   * @param {*} e
+   */
   handleAddDirectMessageClick(e) {
     this.setState({
       addDirectMessage: true
