@@ -71,6 +71,20 @@ userSchema.statics.updateUserSocketId = function(userId, socketId) {
 };
 
 /**
+ * Remove a user's socketId field
+ *
+ * @param {*} socketId
+ * @returns {Promise} Promise object resulting in the updated User
+ */
+userSchema.statics.removeUserSocketId = function(socketId) {
+  return this.findOneAndUpdate(
+    { socketId },
+    { $unset: { socketId: "" } },
+    { new: true }
+  );
+};
+
+/**
  * Get all of the users and limits the fields only to what is necessary
  *
  * Fields:
