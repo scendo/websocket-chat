@@ -188,7 +188,8 @@ class ChatSidebar extends Component {
               content="Create a new channel"
               style={{
                 opacity: 0.9,
-                padding: "2em"
+                padding: "2em",
+                maxHeight: "60px"
               }}
               size="mini"
               inverted
@@ -214,7 +215,8 @@ class ChatSidebar extends Component {
               content="Open a direct message"
               style={{
                 opacity: 0.9,
-                padding: "2em"
+                padding: "2em",
+                maxHeight: "60px"
               }}
               size="mini"
               inverted
