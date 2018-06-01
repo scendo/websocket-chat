@@ -57,7 +57,10 @@ class ChatSidebar extends Component {
   handleLogoutClick(e) {
     e.preventDefault();
 
+    const { socket } = this.props;
+    console.log(socket);
     this.props.logoutUser();
+    socket.disconnect();
   }
 
   renderUnreadMessagesLabel(unreadMessageCount) {
@@ -210,6 +213,7 @@ class ChatSidebar extends Component {
 }
 const mapStateToProps = state => ({
   auth: state.auth,
+  socket: state.socket,
   rooms: state.rooms
 });
 
