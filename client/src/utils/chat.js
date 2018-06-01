@@ -1,4 +1,15 @@
 /**
+ * Unsets/deletes a user given an object of users and a userId to unset
+ *
+ * @param {*} users
+ * @param {*} userId
+ */
+export const unsetUser = (users, userId) => {
+  const { [userId]: removedUser, ...remainingUsers } = users;
+  return remainingUsers;
+};
+
+/**
  * Checks if a given user is in a room
  */
 export const isUserInRoom = (room, userId) => {

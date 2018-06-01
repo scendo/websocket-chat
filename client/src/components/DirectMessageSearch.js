@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, Button, Header, List, Icon } from "semantic-ui-react";
 import soa from "../utils/socketActions";
 import {
+  unsetUser,
   getRoomsByGroup,
   getDirectMessage,
   setDirectMessageName
@@ -20,19 +21,6 @@ class DirectMessageSearch extends Component {
     this.handleUserClick = this.handleUserClick.bind(this);
   }
 
-  getMatchedUsers(users, inputValue) {
-    const { currentUser } = this.props;
-    const upperCaseInputValue = inputValue.toUpperCase();
-
-    //Remove the current user from matched users
-    const { [currentUser.id]: removedUser, ...remainingUsers } = users;
-
-    return Object.values(remainingUsers).filter((user, index) => {
-      if (user.name.toUpperCase().indexOf(upperCaseInputValue) !== -1)
-        return user;
-    });
-  }
-
   handleInputChange(e) {
     const { users } = this.props;
     const inputValue = e.target.value;
@@ -43,6 +31,18 @@ class DirectMessageSearch extends Component {
     });
   }
 
+  /**
+   * A user was selected
+   *
+   * If the room doesn't exist, create it.
+   *
+   * Open the room.
+   *
+   * @param {*} e
+   * @param {Object} data - data attributes on the user element
+   * @param {string} data.userid - Name of the user
+   * @param {string} data.roomid - roomid if the room exists otherwise undefined
+   */
   handleUserClick(e, { userid, roomid }) {
     const {
       socket,
@@ -118,6 +118,26 @@ class DirectMessageSearch extends Component {
         }
       );
     }
+  }
+
+  /**
+   * Users .filter to match the user's input with a set of users
+   * that contain the values being searched for
+   *
+   * @param {*} users
+   * @param {*} inputValue
+   */
+  getMatchedUsers(users, inputValue) {
+    const { currentUser } = this.props;
+    const upperCaseInputValue = inputValue.toUpperCase();
+
+    //Remove the current user from matched users
+    const remainingUsers = unsetUser(users, currentUser.id);
+
+    return Object.values(remainingUsers).filter((user, index) => {
+      if (user.name.toUpperCase().indexOf(upperCaseInputValue) !== -1)
+        return user;
+    });
   }
 
   render() {
