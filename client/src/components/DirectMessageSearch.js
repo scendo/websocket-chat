@@ -77,6 +77,7 @@ class DirectMessageSearch extends Component {
             });
 
             openChatRoom({
+              currentUser,
               room: updatedRoom,
               messages
             });
@@ -107,6 +108,7 @@ class DirectMessageSearch extends Component {
             addRoom(updatedRoom);
 
             openChatRoom({
+              currentUser,
               room: updatedRoom,
               messages
             });
