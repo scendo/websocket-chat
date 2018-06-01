@@ -44,12 +44,22 @@ export default function(state = defaultState, action) {
 const incrementMessageCount = (state, roomId) => {
   const metaKey = `room_${roomId}`;
 
+  const updatedState = { ...state };
+
+  if (updatedState.metaData[metaKey] === undefined) {
+    updatedState.metaData[metaKey] = {
+      unreadMessageCount: 0
+    };
+  }
+
   return {
-    ...state,
+    ...updatedState,
     metaData: {
       [metaKey]: {
-        ...state.metaData[metaKey],
-        unreadMessageCount: (state.metaData[metaKey].unreadMessageCount += 1)
+        ...updatedState.metaData[metaKey],
+        unreadMessageCount: (updatedState.metaData[
+          metaKey
+        ].unreadMessageCount += 1)
       }
     }
   };

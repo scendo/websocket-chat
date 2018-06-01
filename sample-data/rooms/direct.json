@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "5b006abf7863a528dffd05d3",
+    "activeUsers": ["5af49b643049be056efeb861", "5af49b703049be056efeb862"],
+    "users": ["5af49b643049be056efeb861", "5af49b703049be056efeb862"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194ed1f940fcd3a7322e1",
+    "activeUsers": ["5af49b643049be056efeb861", "5af4af8bf4beb512b3d63ceb"],
+    "users": ["5af49b643049be056efeb861", "5af4af8bf4beb512b3d63ceb"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194ee1c0e0471767b4d9c",
+    "activeUsers": ["5af49b643049be056efeb861", "5af4b2674babc8159c7e8c0d"],
+    "users": ["5af49b643049be056efeb861", "5af4b2674babc8159c7e8c0d"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194ee9b520bc4c168dbc3",
+    "activeUsers": ["5af49b643049be056efeb861", "5af4b2814babc8159c7e8c0e"],
+    "users": ["5af49b643049be056efeb861", "5af4b2814babc8159c7e8c0e"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194eea28f818673e4aa0f",
+    "activeUsers": ["5af49b643049be056efeb861", "5af4b2964babc8159c7e8c0f"],
+    "users": ["5af49b643049be056efeb861", "5af4b2964babc8159c7e8c0f"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194efa2dc4cd542e81520",
+    "activeUsers": ["5af49b643049be056efeb861", "5b119578e7e89b07512ad0de"],
+    "users": ["5af49b643049be056efeb861", "5b119578e7e89b07512ad0de"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194f0e1f203ee47d89c58",
+    "activeUsers": ["5af49b643049be056efeb861", "5b11958ae7e89b07512ad0df"],
+    "users": ["5af49b643049be056efeb861", "5b11958ae7e89b07512ad0df"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194f05a2a65bbd2ceccf1",
+    "activeUsers": ["5af49b643049be056efeb861", "5b119591e7e89b07512ad0e0"],
+    "users": ["5af49b643049be056efeb861", "5b119591e7e89b07512ad0e0"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1194f2469296c6c8156626",
+    "activeUsers": ["5af49b643049be056efeb861", "5b11959be7e89b07512ad0e1"],
+    "users": ["5af49b643049be056efeb861", "5b11959be7e89b07512ad0e1"],
+    "messages": [],
+    "name": "Private Message",
+    "group": "direct",
+    "created": "2018-05-19T18:19:43.581Z",
+    "__v": 0
+  }
+]

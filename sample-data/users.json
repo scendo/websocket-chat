@@ -2,18 +2,51 @@
   {
     "_id": "5af49b643049be056efeb861",
     "registered": "2017-03-08T19:30:21.147Z",
-    "name": "test",
-    "email": "test@mail.com",
-    "password": "$2b$10$K04F/IvAyiL0tdtnKhG03OpQOJUr.9JrS2L/VLE4DuDUWRkz9KG/i",
-    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"]
+    "name": "Admin",
+    "email": "admin@mail.com",
+    "password": "$2b$10$av1ZgpdAhUUYgUBjtZHU3.Tff1oJrYG5RvlPXjDLZ6Lak9m2cqJQK",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5b006abf7863a528dffd05d3",
+      "5b1194ec52271646ba746e4b",
+      "5b1194ed1f940fcd3a7322e1",
+      "5b1194ee1c0e0471767b4d9c",
+      "5b1194ee9b520bc4c168dbc3",
+      "5b1194eea28f818673e4aa0f",
+      "5b1194efa2dc4cd542e81520",
+      "5b1194f0e1f203ee47d89c58",
+      "5b1194f05a2a65bbd2ceccf1",
+      "5b1194f1c5719274081f83bf",
+      "5b1194f2469296c6c8156626"
+    ]
   },
   {
     "_id": "5af49b703049be056efeb862",
     "registered": "2017-03-08T19:30:21.147Z",
-    "name": "james",
+    "name": "James",
     "email": "james@mail.com",
     "password": "$2b$10$Y.dEqExAaCWfM89K/imbL.ngct89rTk77qZafYBiqlLQa0tGqzTOi",
-    "rooms": ["5af49a5c2a6433052276e000", "5b006abf7863a528dffd05d3"]
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5b006abf7863a528dffd05d3",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5b006abf7863a528dffd05d3"
+    ]
   },
   {
     "_id": "5af4af8bf4beb512b3d63ceb",
@@ -21,7 +54,21 @@
     "name": "Peter",
     "email": "peter@mail.com",
     "password": "$2b$10$UDJlLMK.TSMpwE1O2pWqLec/MgxjcsEj6f4Em0.HDUnyjqRv0NdIm",
-    "rooms": []
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194ed1f940fcd3a7322e1"
+    ]
   },
   {
     "_id": "5af4b2674babc8159c7e8c0d",
@@ -29,7 +76,21 @@
     "name": "Abe",
     "email": "abe@mail.com",
     "password": "$2b$10$jIExRqFAYrgYSWo4kqYEXelorjx.8h5jyZPd7xtKvqtyrQwae6nQe",
-    "rooms": []
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194ee1c0e0471767b4d9c"
+    ]
   },
   {
     "_id": "5af4b2814babc8159c7e8c0e",
@@ -37,7 +98,21 @@
     "name": "Lara",
     "email": "lara@mail.com",
     "password": "$2b$10$DuskXvmmx0y5k.DekCn/YOisN0zOnJsjRhOUgRURpDXRKn2h0EB0y",
-    "rooms": []
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194ee9b520bc4c168dbc3"
+    ]
   },
   {
     "_id": "5af4b2964babc8159c7e8c0f",
@@ -45,6 +120,332 @@
     "name": "Tan",
     "email": "tan@mail.com",
     "password": "$2b$10$VxotCvX7uHxgj1Ahsb3wLeTKVhd3UtKBM6HYYTE1UefgZ6NIG/mnS",
-    "rooms": []
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194eea28f818673e4aa0f"
+    ]
+  },
+  {
+    "_id": "5b119578e7e89b07512ad0de",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194efa2dc4cd542e81520"
+    ],
+    "name": "Adam",
+    "email": "adam@mail.com",
+    "password": "$2b$10$hOrdM/2cEb9B.35auBlbj.o/EnFydKq9TQqtkH7HbKfOjnavDGIHu",
+    "registered": "2018-06-01T18:50:32.505Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b11958ae7e89b07512ad0df",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194f0e1f203ee47d89c58"
+    ],
+    "name": "Ari",
+    "email": "ari@mail.com",
+    "password": "$2b$10$Dsu8smO3pZgTmRFrLQQC8eYDLZ6ypRvfr33EAtjntNXPe7J4ns.8u",
+    "registered": "2018-06-01T18:50:50.304Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b119591e7e89b07512ad0e0",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194f05a2a65bbd2ceccf1"
+    ],
+    "name": "Ben",
+    "email": "ben@mail.com",
+    "password": "$2b$10$9puKEyXIFPwBfTBh4ArBBeQdEdg9Z5hA3L0lh4qzxE26QfggOXwMC",
+    "registered": "2018-06-01T18:50:57.471Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b11959be7e89b07512ad0e1",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000",
+      "5b1194f2469296c6c8156626"
+    ],
+    "name": "Chris",
+    "email": "chris@mail.com",
+    "password": "$2b$10$1BSpUY/M/.Bph6hVn3a9Pe1jnJ7U8RhxXRLMD7s0ZjSPHsDuzlnxK",
+    "registered": "2018-06-01T18:51:07.183Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195a2e7e89b07512ad0e2",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Dan",
+    "email": "dan@mail.com",
+    "password": "$2b$10$I45Ar/HvL41Yo0foy0nMtez6O/AmtCLB.RofNSfia5mDvmsOohn/2",
+    "registered": "2018-06-01T18:51:14.789Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195ace7e89b07512ad0e3",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Eli",
+    "email": "eli@mail.com",
+    "password": "$2b$10$6btGyYEzEYq7O2JAGzscCuRLLQCbjOYYNtUq6YgzdtwfBjIJdijUe",
+    "registered": "2018-06-01T18:51:24.049Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195b3e7e89b07512ad0e4",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Gary",
+    "email": "gary@mail.com",
+    "password": "$2b$10$w3lHdMWEsXxvczjLVQjzwu3xIfrrOX2e3qEkqtUgZG73dqdI.f0Ge",
+    "registered": "2018-06-01T18:51:31.490Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195bbe7e89b07512ad0e5",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Hugo",
+    "email": "hugo@mail.com",
+    "password": "$2b$10$CbixWSvYi1Go4Ir6HLQhg.9AXd/fFy2YtVeD6tX26ZTEajfdh7qEC",
+    "registered": "2018-06-01T18:51:39.162Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195c1e7e89b07512ad0e6",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Lee",
+    "email": "lee@mail.com",
+    "password": "$2b$10$qaT13alQBRtAa3uHcKDnfumkmcmg0fbSYil6Bv6u6PmSDkTUIvjrG",
+    "registered": "2018-06-01T18:51:45.463Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195c9e7e89b07512ad0e7",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Josh",
+    "email": "josh@mail.com",
+    "password": "$2b$10$fsYz0cK4WA1dQKsk.jLNeu0w/ssxwO00tEJMluM42WpIj8heySoxa",
+    "registered": "2018-06-01T18:51:53.146Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195d2e7e89b07512ad0e8",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Mark",
+    "email": "mark@mail.com",
+    "password": "$2b$10$4Ub454BhbrcZuHYgm0Rvq.cQ8oZk3yhWELc9jqsftqpcbA03eWcdm",
+    "registered": "2018-06-01T18:52:02.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195d9e7e89b07512ad0e9",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Pat",
+    "email": "pat@mail.com",
+    "password": "$2b$10$cG.z7XNH92RUwMWaaK7fRue0sjmpXoIvifmT0KPMtuaTwWm0sgW1K",
+    "registered": "2018-06-01T18:52:09.097Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195e0e7e89b07512ad0ea",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Ray",
+    "email": "ray@mail.com",
+    "password": "$2b$10$pE8yfHgnm404H4kNcXXp.ulayaflWbqOOWFtY25bkPjy6kJHjqz7m",
+    "registered": "2018-06-01T18:52:16.274Z",
+    "__v": 0
+  },
+  {
+    "_id": "5b1195e7e7e89b07512ad0eb",
+    "rooms": [
+      "5af49a5c2a6433052276e000",
+      "5af49a5c2a6433052276e001",
+      "5af49a5c2a6433052276e002",
+      "5b1192444a8ba88a9b98cdba",
+      "5b11926e8b2b3347964c75c8",
+      "5b1192756ecf9cb5a2993c20",
+      "5b119276f6103e74704c51fc",
+      "5b11927729905d9328cd56a2",
+      "5b1192772c11da36c1d13929",
+      "5b11927875ed13ca5441bbc1",
+      "5b119278af29a90b5c1f3d52",
+      "5af49a5c2a6433052276e000"
+    ],
+    "name": "Rich",
+    "email": "rich@mail.com",
+    "password": "$2b$10$JqshIUn0SdYHvJ6BWtyQmuKtvONvU1JEQHGcoRKcivTl65p8/6xFK",
+    "registered": "2018-06-01T18:52:23.241Z",
+    "__v": 0
   }
 ]

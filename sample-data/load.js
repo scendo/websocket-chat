@@ -15,18 +15,41 @@ const UserMeta = require("../models/UserMeta");
 const messages = JSON.parse(
   fs.readFileSync(__dirname + "/messages.json", "utf-8")
 );
-const rooms = JSON.parse(fs.readFileSync(__dirname + "/rooms.json", "utf-8"));
-const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
-const usermeta = JSON.parse(
-  fs.readFileSync(__dirname + "/usermeta.json", "utf-8")
+const channelsRooms = JSON.parse(
+  fs.readFileSync(__dirname + "/rooms/channels.json", "utf-8")
 );
+const directRooms = JSON.parse(
+  fs.readFileSync(__dirname + "/rooms/direct.json", "utf-8")
+);
+const rooms = channelsRooms.concat(directRooms);
+const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
+
+/**
+ * Dynamically generate UerMeta for each direct message room
+ */
+const usermetas = directRooms.reduce((arr, room) => {
+  const roomMetaPerUser = room.users.reduce((arr, userId) => {
+    return [
+      ...arr,
+      {
+        userId: userId,
+        key: `room_${room._id}`,
+        value: {
+          unreadMessageCount: 0
+        }
+      }
+    ];
+  }, []);
+
+  return [...arr, ...roomMetaPerUser];
+}, []);
 
 const loadData = async () => {
   try {
     const insertMessagePromise = Message.insertMany(messages);
     const insertRoomPromise = Room.insertMany(rooms);
     const insertUserPromise = User.insertMany(users);
-    const insertUserMetaPromise = UserMeta.insertMany(usermeta);
+    const insertUserMetaPromise = UserMeta.insertMany(usermetas);
 
     await Promise.all([
       insertMessagePromise,
