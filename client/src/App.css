@@ -30,7 +30,7 @@ body > div > div > div.register-form {
 
 /* Chatroom - Window */
 #chat-window {
-  height: 350px;
+  height: 80vh;
   overflow-y: scroll;
 }
 #messages {
