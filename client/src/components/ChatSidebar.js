@@ -82,6 +82,7 @@ class ChatSidebar extends Component {
       const room = rooms[roomId];
       return (
         <Menu.Item
+          className="sidebar-menu-item"
           key={room.id}
           roomid={room.id}
           icon="hashtag"
@@ -116,6 +117,7 @@ class ChatSidebar extends Component {
           <React.Fragment key={room.id}>
             <Menu.Item
               id={room.id}
+              className="sidebar-menu-item"
               roomid={room.id}
               name={user.name}
               roomname={user.name}

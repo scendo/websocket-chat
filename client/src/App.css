@@ -119,6 +119,11 @@ body > div > div > div.register-form {
   float: left;
 }
 
+#chat-sidebar .sidebar-menu-item:hover {
+  background-color: #20262e;
+  color: #fff;
+}
+
 #chat-sidebar .sidebar-add-chat-btn {
   padding: 2px;
   background-color: transparent;
