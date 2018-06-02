@@ -65,6 +65,9 @@ body > div > div > div.register-form {
   bottom: 0;
   padding: 10px 12px;
 }
+#room-message-input input {
+  border: 1px solid #a0a0a0;
+}
 
 /* Chatroom - Header */
 #room-header #room-name {

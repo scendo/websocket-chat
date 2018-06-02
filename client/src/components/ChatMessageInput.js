@@ -43,12 +43,14 @@ class ChatMessageInput extends Component {
   }
 
   render() {
+    const { activeRoom } = this.props;
+    const roomNamePrefix = activeRoom.group === "channel" ? "#" : "@";
     return (
       <div id="room-message-input">
         <Form.Input
           name="message"
           autoComplete="off"
-          placeholder={`Send a message to #${"test"}`}
+          placeholder={`Message ${roomNamePrefix} ${activeRoom.name}`}
           fluid
           onChange={this.onInputChange}
           onKeyPress={this.handleMessageSubmit}
