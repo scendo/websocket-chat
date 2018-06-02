@@ -22,6 +22,7 @@ import { logoutUser } from "../actions/auth";
 import Navbar from "./Navbar";
 import ChatSidebar from "./ChatSidebar";
 import ChatWindow from "./ChatWindow";
+import ChatMessageInput from "./ChatMessageInput";
 import CreateChannel from "./CreateChannel";
 import DirectMessageSearch from "./DirectMessageSearch";
 
@@ -245,6 +246,12 @@ class Chatroom extends Component {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+        <ChatMessageInput
+          socket={this.props.socket}
+          activeRoom={this.props.activeRoom}
+          currentUser={this.props.currentUser}
+          addMessageToRoom={this.props.addMessageToRoom}
+        />
       </div>
     );
   }
