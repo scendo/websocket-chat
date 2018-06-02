@@ -96,8 +96,8 @@ body > div > div > div.register-form {
 .ui.button.escape-chat-menu-btn {
   position: absolute;
   background: transparent;
-  top: 75px;
-  right: 50px;
+  top: 15px;
+  right: 15px;
 }
 
 /* Chatroom - Sidebar */
@@ -133,14 +133,21 @@ body > div > div > div.register-form {
 /* Create Channel */
 #chat-create-channel,
 #chat-add-direct-message {
-  padding: 100px 50px;
+  padding: 50px 50px;
 }
 
 /* Direct Message search */
+#direct-message-list {
+  height: 50vh;
+  overflow-y: auto;
+}
 #direct-message-list .ununread-messages-label {
   float: none;
   cursor: pointer;
 }
 #chat-add-direct-message .direct-message-search-input {
   width: 100%;
+}
+#chat-add-direct-message .direct-message-search-input input {
+  font-size: 90% !important;
 }
