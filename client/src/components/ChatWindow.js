@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { List, Form, Divider } from "semantic-ui-react";
+import UserBadge from "./UserBadge";
 /**
  * Handles the Chat Window displaying the room's messages
  *
@@ -72,15 +73,17 @@ class ChatWindow extends Component {
         hour: "2-digit",
         minute: "2-digit"
       });
+      const userName = users[message.user].name;
       return (
         <List.Item key={message.id} className="room-message">
-          <List.Header>
-            <span className="room-message-username">
-              {users[message.user].name}
-            </span>
-            <span className="room-message-timestamp">{timeStamp}</span>
-          </List.Header>
-          <List.Content>{message.value}</List.Content>
+          <List.Content>
+            <UserBadge userName={userName} />
+            <div className="room-message-content">
+              <span className="room-message-username">{userName}</span>
+              <span className="room-message-timestamp">{timeStamp}</span>
+              <div className="room-message-text">{message.value}</div>
+            </div>
+          </List.Content>
         </List.Item>
       );
     });

@@ -81,6 +81,13 @@ body > div > div > div.register-form {
 #messages .room-message {
   padding: 5px 0;
 }
+#messages .room-message .room-message-content {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+  word-wrap: break-word;
+  max-width: 75%;
+}
 .room-message .room-message-username {
   color: #2c2d30;
   font-size: 16px;
@@ -91,6 +98,26 @@ body > div > div > div.register-form {
   font-size: 12px;
   font-weight: 400;
   padding-left: 7px;
+}
+.room-message .room-message-text {
+  margin-top: 3px;
+}
+
+/* User Badge */
+.user-badge {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+.user-badge .user-initial {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
 }
 
 .ui.button.escape-chat-menu-btn {
