@@ -30,7 +30,13 @@ const Navbar = props => {
           item
         >
           <Dropdown.Menu position="right">
-            <Dropdown.Item text="Logout" onClick={props.handleLogoutClick} />
+            <Dropdown.Item
+              text="Logout"
+              onClick={props.handleLogoutClick}
+              style={{
+                textAlign: "center"
+              }}
+            />
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Menu>
