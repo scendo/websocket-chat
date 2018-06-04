@@ -85,27 +85,45 @@ userSchema.statics.removeUserSocketId = function(socketId) {
 };
 
 /**
- * Get all of the users and limits the fields only to what is necessary
- *
- * Fields:
- *
- * rooms
- * name
- * socketId
- * metaData
+ * Get all of the users and limits the fields only to what is necessary and
+ * populate the userMeta field by cross referencing the userMeta model using the localfield _id
+ * and userMeta's userId field.
  *
  * @returns {Promise} Promise object resulting in an array of Users
  */
 userSchema.statics.getAllUsers = function() {
-  return this.find(
-    {},
+  return this.aggregate([
     {
-      rooms: 1,
-      name: 1,
-      socketId: 1,
-      metaData: 1
-    }
-  );
+      $lookup: {
+        from: "usermetas", //usermetas references Review model - mongodb auto lower cases the model name and adds an s
+        localField: "_id",
+        foreignField: "userId",
+        as: "metaData"
+      }
+    },
+    {
+      $project: {
+        // limit the aggregate result to the necessary fields
+        _id: 1,
+        socketId: 1,
+        name: 1,
+        rooms: 1,
+        metaData: {
+          $map: {
+            //$map/iterate over each metaData and limit each metaData result to 2 fields k and v to prepare for use with $arrayToObject
+            input: "$metaData",
+            as: "m",
+            in: {
+              k: "$$m.key",
+              v: "$$m.value"
+            }
+          }
+        }
+      }
+    },
+    { $addFields: { metaData: { $arrayToObject: "$metaData" } } }, //overwrite the metaData field with the result from $arrayToObject
+    { $addFields: { id: "$_id" } }
+  ]);
 };
 
 /**

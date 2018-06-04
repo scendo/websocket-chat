@@ -81,7 +81,7 @@ const formatChatServiceData = ({
 }) => {
   //Reduce the arrays into key value objects
   const users = allUsers.reduce((obj, user) => {
-    return { ...obj, [user.id]: user.toJSON() };
+    return { ...obj, [user.id]: user };
   }, {});
 
   const userMeta = currentUserMeta.reduce((obj, userMeta) => {

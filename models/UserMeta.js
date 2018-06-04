@@ -7,7 +7,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const userMetaSchema = new Schema({
   userId: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
     required: "Please supply a user id"
   },
   key: {

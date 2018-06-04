@@ -24,6 +24,21 @@ const directRooms = JSON.parse(
 const rooms = channelsRooms.concat(directRooms);
 const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
 
+const getRandomColor = () => {
+  const colors = [
+    "#001f3f",
+    "#85144b",
+    "#FF851B",
+    "#3D9970",
+    "#FFDC00",
+    "#B10DC9",
+    "#39CCCC",
+    "#2ECC40",
+    "#ea281e",
+    "#8e8e8e"
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+};
 /**
  * Dynamically generate UerMeta for each direct message room
  */
@@ -44,18 +59,33 @@ const usermetas = directRooms.reduce((arr, room) => {
   return [...arr, ...roomMetaPerUser];
 }, []);
 
+const badgeColorUserMetas = users.reduce((arr, user) => {
+  return [
+    ...arr,
+    {
+      userId: user._id,
+      key: "badgeColor",
+      value: getRandomColor()
+    }
+  ];
+}, []);
+
 const loadData = async () => {
   try {
     const insertMessagePromise = Message.insertMany(messages);
     const insertRoomPromise = Room.insertMany(rooms);
     const insertUserPromise = User.insertMany(users);
     const insertUserMetaPromise = UserMeta.insertMany(usermetas);
+    const insertUserMetaBadgeColorPromise = UserMeta.insertMany(
+      badgeColorUserMetas
+    );
 
     await Promise.all([
       insertMessagePromise,
       insertRoomPromise,
       insertUserPromise,
-      insertUserMetaPromise
+      insertUserMetaPromise,
+      insertUserMetaBadgeColorPromise
     ]).catch(e => console.log(e));
 
     console.log("loading sample data... complete!");

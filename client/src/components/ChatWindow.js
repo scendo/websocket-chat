@@ -73,13 +73,14 @@ class ChatWindow extends Component {
         hour: "2-digit",
         minute: "2-digit"
       });
-      const userName = users[message.user].name;
+      const user = users[message.user];
+
       return (
         <List.Item key={message.id} className="room-message">
           <List.Content>
-            <UserBadge userName={userName} />
+            <UserBadge user={user} />
             <div className="room-message-content">
-              <span className="room-message-username">{userName}</span>
+              <span className="room-message-username">{user.name}</span>
               <span className="room-message-timestamp">{timeStamp}</span>
               <div className="room-message-text">{message.value}</div>
             </div>
