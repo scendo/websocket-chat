@@ -60,10 +60,11 @@ body > div > div > div.register-form {
 
 /* Message Input  */
 #room-message-input {
-  position: absolute;
+  position: fixed;
   width: 100%;
+  left: 0;
   bottom: 0;
-  padding: 10px 12px;
+  padding: 0px 12px;
 }
 #room-message-input input {
   border: 1px solid #a0a0a0;

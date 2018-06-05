@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { List, Form, Divider } from "semantic-ui-react";
 import UserBadge from "./UserBadge";
+import ChatMessageInput from "./ChatMessageInput";
 /**
  * Handles the Chat Window displaying the room's messages
  *
@@ -108,6 +109,12 @@ class ChatWindow extends Component {
             })}
             <div ref={el => (this.messageListBottom = el)} />
           </List>
+          <ChatMessageInput
+            socket={this.props.socket}
+            activeRoom={this.props.activeRoom}
+            currentUser={this.props.currentUser}
+            addMessageToRoom={this.props.addMessageToRoom}
+          />
         </div>
       </div>
     );
