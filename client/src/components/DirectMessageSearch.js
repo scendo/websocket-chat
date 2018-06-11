@@ -136,10 +136,16 @@ class DirectMessageSearch extends Component {
     //Remove the current user from matched users
     const remainingUsers = unsetUser(users, currentUser.id);
 
-    return Object.values(remainingUsers).filter((user, index) => {
-      if (user.name.toUpperCase().indexOf(upperCaseInputValue) !== -1)
-        return user;
-    });
+    return Object.values(remainingUsers)
+      .filter((user, index) => {
+        if (user.name.toUpperCase().indexOf(upperCaseInputValue) !== -1)
+          return user;
+      })
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
   }
 
   render() {

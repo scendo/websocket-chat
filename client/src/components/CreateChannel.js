@@ -110,25 +110,31 @@ class CreateChannel extends Component {
    * Formats the users object into an array of users to work with <Dropdown /> options
    */
   getUserDropdownOptions(users) {
-    return Object.values(users).reduce((array, user) => {
-      return [
-        ...array,
-        {
-          key: user.id,
-          text: user.name,
-          value: user.id,
-          content: (
-            <React.Fragment>
-              <Icon
-                color={user.socketId ? "green" : null}
-                name={user.socketId ? "circle" : "circle outline"}
-              />
-              {user.name}
-            </React.Fragment>
-          )
-        }
-      ];
-    }, []);
+    return Object.values(users)
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      })
+      .reduce((array, user) => {
+        return [
+          ...array,
+          {
+            key: user.id,
+            text: user.name,
+            value: user.id,
+            content: (
+              <React.Fragment>
+                <Icon
+                  color={user.socketId ? "green" : null}
+                  name={user.socketId ? "circle" : "circle outline"}
+                />
+                {user.name}
+              </React.Fragment>
+            )
+          }
+        ];
+      }, []);
   }
 
   render() {
