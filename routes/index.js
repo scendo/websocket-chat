@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
   //set static folder
   router.use(express.static("client/build"));
 
-  router.get("/", (req, res) => {
+  router.get("/*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
