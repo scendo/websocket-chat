@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 
+const { getRandomColor } = require("../utils/chat");
+
 /**
  * Load sample application data
  *
@@ -64,25 +66,6 @@ const deleteData = async () => {
 
   console.log("Data successfully deleted!");
   process.exit();
-};
-
-/**
- * Get a random color hex value
- */
-const getRandomColor = () => {
-  const colors = [
-    "#001f3f",
-    "#85144b",
-    "#FF851B",
-    "#3D9970",
-    "#FFDC00",
-    "#B10DC9",
-    "#39CCCC",
-    "#2ECC40",
-    "#ea281e",
-    "#8e8e8e"
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
 };
 
 /**
