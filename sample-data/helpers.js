@@ -125,6 +125,11 @@ const getUserMetas = ({ users, directRooms }) => {
         userId: user._id,
         key: "badgeColor",
         value: getRandomColor()
+      },
+      {
+        userId: user._id,
+        key: "totalUnreadMessages",
+        value: 0
       }
     ];
   }, []);
