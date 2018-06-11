@@ -35,7 +35,8 @@ exports.login = async (req, res) => {
       expiresIn: 3600
     });
     res.json({
-      token: "Bearer " + token
+      token: "Bearer " + token,
+      environment: process.env.NODE_ENV
     });
   } else {
     return res.status(400).json([{ msg: errorMsg }]);

@@ -13,11 +13,14 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case USER_LOGGED_IN:
-    case SET_CURRENT_USER:
+    case SET_CURRENT_USER: {
+      const { jwtDecoded, environment } = action.payload;
       return {
         isAuthenticated: Object.keys(action.payload).length > 0 ? true : false,
-        user: action.payload
+        user: jwtDecoded,
+        environment
       };
+    }
 
     case USER_LOGGED_OUT:
       return {

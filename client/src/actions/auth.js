@@ -47,7 +47,7 @@ export const loginUser = (email, password) => dispatch => {
   axios
     .post("/api/v1/login", { email, password })
     .then(response => {
-      const { token } = response.data;
+      const { token, environment } = response.data;
       // Set token to ls
       localStorage.setItem("jwtToken", token);
 
@@ -56,7 +56,7 @@ export const loginUser = (email, password) => dispatch => {
 
       dispatch({
         type: USER_LOGGED_IN,
-        payload: jwtDecoded
+        payload: { jwtDecoded, environment }
       });
     })
     .catch(err => {
