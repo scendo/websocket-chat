@@ -266,10 +266,13 @@ const mapStateToProps = state => ({
   messages: state.messages
 });
 
-export default connect(mapStateToProps, {
-  openChatRoom,
-  addRoom,
-  addMessageToRoom,
-  addUnreadMessage,
-  logoutUser
-})(Chatroom);
+export default connect(
+  mapStateToProps,
+  {
+    openChatRoom,
+    addRoom,
+    addMessageToRoom,
+    addUnreadMessage,
+    logoutUser
+  }
+)(Chatroom);
