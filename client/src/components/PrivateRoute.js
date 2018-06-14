@@ -9,18 +9,25 @@ import PropTypes from "prop-types";
  *
  * @param {*} param0
  */
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
-    }
-  />
-);
+const PrivateRoute = ({
+  component: Component,
+  auth,
+  componentProps,
+  ...rest
+}) => {
+  return (
+    <Route
+      {...rest}
+      render={routeProps => {
+        return auth.isAuthenticated === true ? (
+          <Component {...routeProps} {...componentProps} />
+        ) : (
+          <Redirect to="/" />
+        );
+      }}
+    />
+  );
+};
 
 PrivateRoute.propTypes = {
   auth: PropTypes.object.isRequired
