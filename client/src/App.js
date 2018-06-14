@@ -39,7 +39,15 @@ class App extends Component {
             <Route exact path="/" component={LoginForm} />
             <Route exact path="/register" component={RegisterForm} />
             <Switch>
-              <PrivateRoute exact path="/chatroom" component={ChatRoom} />
+              <PrivateRoute
+                exact
+                path="/chatroom"
+                component={ChatRoom}
+                componentProps={{
+                  env: this.props.env,
+                  apiUrl: this.props.apiUrl
+                }}
+              />
             </Switch>
           </div>
         </Router>

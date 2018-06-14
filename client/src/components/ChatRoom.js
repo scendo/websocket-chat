@@ -69,11 +69,7 @@ class Chatroom extends Component {
    * Initialize the  client/server socket connection
    */
   initSocket() {
-    const { environment } = this.props;
-    const socketUri =
-      environment === "development" ? "http://localhost/7777" : null;
-    const socket = io(socketUri);
-
+    const socket = io(this.props.apiUrl);
     socket.on("connect", () => {
       soa.startChatService(
         { socket, currentUserId: this.props.auth.user.id },
