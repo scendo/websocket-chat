@@ -15,7 +15,7 @@ const Navbar = props => {
   );
 
   return (
-    <Menu>
+    <Menu id="chat-menu">
       <Menu.Item name="sidebar-menu" onClick={props.handleMenuClick}>
         <Icon name="sidebar" size="large" />
       </Menu.Item>

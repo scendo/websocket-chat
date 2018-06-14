@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  font: 13px Lato, Helvetica, Arial;
+  font-family: 13px Work Sans, Helvetica, Arial;
 }
 body > div,
 body > div > div,
@@ -18,15 +18,38 @@ body > div > div > div.register-form {
 .register-form .ui.error.message {
   padding: 5% 15%;
 }
+#chat-menu,
+#chat-menu.ui.menu > .item:first-child,
+#chat-menu.ui.menu #user-settings-menu {
+  color: #fff;
+}
 
-#chatroom {
-  height: 90vh;
+#chat-menu {
+  /* color: white; */
+  background-color: #05182c;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
 }
-#chatroom .ui.menu {
+#chat-menu.ui.menu .item:before {
+  background: none;
+}
+#chat-menu.ui.menu .dropdown.item .menu {
+  border-radius: 0;
+}
+#chat-menu.ui.menu #user-settings-menu .dropdown.icon {
+  margin: 0 0 0 1em;
+}
+/* #chatroom .ui.menu {
   margin: 0 !important;
+  border-radius: 0;
+} */
+#chatroom .ui.menu .item > i.icon {
+  margin: 0;
 }
-#chatroom .ui.segment {
-  height: 90vh;
+#chatroom .ui.basic.segment {
+  /* height: 90vh; */
+  padding: 0 0 0 13px;
 }
 #chatroom .ui.segment.pushable {
   margin: 0 !important;
@@ -34,16 +57,16 @@ body > div > div > div.register-form {
   border: none;
 }
 
+#chatroom .ui.segment.pushable .pusher {
+  height: calc(100vh - 99px);
+}
+
 /* Chatroom - Window */
 #chat-window {
-  height: 80vh;
+  margin-top: 5px;
+  height: calc(100vh - 99px);
+  /* height: inherit; */
   overflow-y: auto;
-}
-@media only screen and (max-width: 768px) {
-  #chat-window {
-    height: 80vh;
-    overflow-y: hidden !important;
-  }
 }
 
 #messages {
@@ -63,7 +86,7 @@ body > div > div > div.register-form {
   position: absolute;
   width: 100%;
   bottom: 0;
-  padding: 10px 12px;
+  padding: 0 12px 10px;
 }
 #room-message-input input {
   border: 1px solid #a0a0a0;
@@ -128,17 +151,27 @@ body > div > div > div.register-form {
 }
 
 /* Chatroom - Sidebar */
-
+#chat-sidebar {
+  background-color: #fafafa;
+  border: 0;
+}
 /* Category */
 #chat-sidebar.ui.vertical.menu .item > .header:not(.ui) {
   text-align: left;
   font-size: 1.5em;
+  margin: 0;
+  color: #656464;
 }
 
 /* Category Sub items */
 #chat-sidebar.ui.vertical.menu .menu .item {
   text-align: left;
   font-size: 1em;
+  color: #888888;
+}
+
+#chat-sidebar.ui.vertical.menu .menu .item i {
+  margin: 1.5px 5px 0 0 !important;
 }
 
 #chat-sidebar.ui.labeled.icon.menu .item > .icon:not(.dropdown) {
@@ -147,7 +180,7 @@ body > div > div > div.register-form {
 }
 
 #chat-sidebar .sidebar-menu-item:hover {
-  background-color: #20262e;
+  background-color: #05182c;
   color: #fff;
 }
 
