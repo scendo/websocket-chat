@@ -24,10 +24,10 @@ class App extends Component {
 
     //Set current user if a valid jwt token exists and user isn't set
     if (!auth.isAuthenticated && localStorage.jwtToken) {
-      const decoded = jwt_decode(localStorage.jwtToken);
+      const jwtDecoded = jwt_decode(localStorage.jwtToken);
       store.dispatch({
         type: SET_CURRENT_USER,
-        payload: decoded
+        payload: { jwtDecoded }
       });
     }
   }
