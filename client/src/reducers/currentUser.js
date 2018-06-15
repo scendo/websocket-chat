@@ -60,7 +60,8 @@ const incrementMessageCount = (state, roomId) => {
         unreadMessageCount: (updatedState.metaData[
           metaKey
         ].unreadMessageCount += 1)
-      }
+      },
+      totalUnreadMessages: (updatedState.metaData.totalUnreadMessages += 1)
     }
   };
 };
