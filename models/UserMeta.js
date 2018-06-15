@@ -62,6 +62,21 @@ userMetaSchema.statics.incUnreadMsgCount = function(userId, roomId) {
 };
 
 /**
+ * Increments the totalUnreadMessages UserMeta field for a given userId
+ *
+ * @param {*} userId
+ */
+userMetaSchema.statics.incTotalUnreadMsgs = function(userId) {
+  return this.findOneAndUpdate(
+    {
+      userId,
+      key: "totalUnreadMessages"
+    },
+    { $inc: { value: 1 } }
+  );
+};
+
+/**
  * Set the unreadMessageCount UserMeta field for a given roomId to a count/value
  *
  * @param {*} userId
