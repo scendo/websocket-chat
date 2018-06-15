@@ -14,6 +14,7 @@ import {
 import soa from "../utils/socketActions";
 import {
   setUserConnected,
+  setUserDisconnected,
   openChatRoom,
   addRoom,
   addMessageToRoom,
@@ -92,9 +93,9 @@ class Chatroom extends Component {
        * A user connected to the chat service.
        * Update their status
        */
-      socket.on("USER_CONNECTED", user => {
-        this.props.setUserConnected(user);
-      });
+      socket.on("USER_CONNECTED", this.props.setUserConnected);
+
+      socket.on("USER_DISCONNECTED", this.props.setUserDisconnected);
 
       socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
         const { currentUser, activeRoom } = this.props;
@@ -278,6 +279,7 @@ export default connect(
   mapStateToProps,
   {
     setUserConnected,
+    setUserDisconnected,
     openChatRoom,
     addRoom,
     addMessageToRoom,

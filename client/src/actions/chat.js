@@ -1,5 +1,6 @@
 import {
   USER_CONNECTED,
+  USER_DISCONNECTED,
   ROOM_OPEN,
   ROOM_ADD,
   MESSAGE_ADD,
@@ -14,6 +15,18 @@ import {
 export const setUserConnected = user => {
   return {
     type: USER_CONNECTED,
+    payload: { user }
+  };
+};
+
+/**
+ * User disconnected/logged out
+ *
+ * @param {*} user
+ */
+export const setUserDisconnected = user => {
+  return {
+    type: USER_DISCONNECTED,
     payload: { user }
   };
 };

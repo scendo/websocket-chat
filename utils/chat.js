@@ -46,7 +46,7 @@ const initChatService = async ({ socketId, currentUserId }) => {
   ] = await Promise.all([
     UserMeta.getAllUserMeta(currentUser.id),
     Room.getRooms(currentUser.rooms),
-    User.getAllUsers(),
+    User.getUsers(),
     Message.getMessages(defaultRoom.messages)
   ]).catch(e => console.log(e));
 

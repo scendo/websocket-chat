@@ -76,12 +76,22 @@ userSchema.statics.updateUserSocketId = function(userId, socketId) {
  * @param {*} socketId
  * @returns {Promise} Promise object resulting in the updated User
  */
-userSchema.statics.removeUserSocketId = function(socketId) {
-  return this.findOneAndUpdate(
+userSchema.statics.removeUserSocketId = async function(socketId) {
+  const user = await this.findOneAndUpdate(
     { socketId },
-    { $unset: { socketId: "" } },
-    { new: true }
+    {
+      $unset: { socketId: "" }
+    },
+    {
+      select: {
+        rooms: 1,
+        name: 1
+      },
+      new: true
+    }
   );
+
+  return this.getUsers(user.id);
 };
 
 /**
@@ -91,8 +101,8 @@ userSchema.statics.removeUserSocketId = function(socketId) {
  *
  * @returns {Promise} Promise object resulting in an array of Users
  */
-userSchema.statics.getAllUsers = function() {
-  return this.aggregate([
+userSchema.statics.getUsers = async function(userId) {
+  let pipeline = [
     {
       $lookup: {
         from: "usermetas", //usermetas references Review model - mongodb auto lower cases the model name and adds an s
@@ -123,7 +133,15 @@ userSchema.statics.getAllUsers = function() {
     },
     { $addFields: { metaData: { $arrayToObject: "$metaData" } } }, //overwrite the metaData field with the result from $arrayToObject
     { $addFields: { id: "$_id" } }
-  ]);
+  ];
+
+  if (userId) {
+    pipeline.unshift({ $match: { _id: mongoose.Types.ObjectId(userId) } });
+  }
+
+  const result = await this.aggregate(pipeline);
+
+  return result.length === 1 ? result[0] : result;
 };
 
 /**
