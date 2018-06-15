@@ -51,7 +51,7 @@ userMetaSchema.statics.getAllUserMeta = function(userId) {
  * @param {*} roomId
  * @returns {Promise} Promise object resulting in an array of UserMeta
  */
-userMetaSchema.statics.incrementUnreadMessages = function(userId, roomId) {
+userMetaSchema.statics.incUnreadMsgCount = function(userId, roomId) {
   return this.findOneAndUpdate(
     {
       userId,
