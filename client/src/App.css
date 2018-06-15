@@ -216,3 +216,50 @@ body > div > div > div.register-form {
 #chat-add-direct-message .direct-message-search-input input {
   font-size: 90% !important;
 }
+
+/* 404 Page not found */
+#page-not-found {
+  height: 100vh;
+  color: #fff;
+  background: rgba(140, 193, 243, 1);
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0, rgba(140, 193, 243, 1)),
+    color-stop(0, rgba(0, 143, 245, 1)),
+    color-stop(6%, rgba(0, 143, 245, 1)),
+    color-stop(39%, rgba(0, 143, 245, 1)),
+    color-stop(100%, rgba(145, 197, 242, 1))
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(140, 193, 243, 1)),
+    color-stop(0, rgba(0, 143, 245, 1)),
+    color-stop(6%, rgba(0, 143, 245, 1)),
+    color-stop(39%, rgba(0, 143, 245, 1)),
+    to(rgba(145, 197, 242, 1))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(140, 193, 243, 1) 0,
+    rgba(0, 143, 245, 1) 0,
+    rgba(0, 143, 245, 1) 6%,
+    rgba(0, 143, 245, 1) 39%,
+    rgba(145, 197, 242, 1) 100%
+  );
+}
+
+#page-not-found .content {
+  padding-top: 30%;
+  text-align: center;
+}
+#page-not-found .content .header-txt {
+  font-size: 3em;
+  line-height: 1.5em;
+}
+#page-not-found .content .body-txt {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}

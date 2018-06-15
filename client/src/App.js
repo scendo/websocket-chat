@@ -13,6 +13,7 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import ChatRoom from "./components/ChatRoom";
 import PrivateRoute from "./components/PrivateRoute";
+import PageNotFound from "./components/PageNotFound";
 
 const history = createHistory();
 
@@ -36,9 +37,9 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <div className="App">
-            <Route exact path="/" component={LoginForm} />
-            <Route exact path="/register" component={RegisterForm} />
             <Switch>
+              <Route exact path="/" component={LoginForm} />
+              <Route exact path="/register" component={RegisterForm} />
               <PrivateRoute
                 exact
                 path="/chatroom"
@@ -48,6 +49,7 @@ class App extends Component {
                   apiUrl: this.props.apiUrl
                 }}
               />
+              <Route component={PageNotFound} />
             </Switch>
           </div>
         </Router>
