@@ -16,20 +16,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Clone the repository
 
-- Install Node Server Dependencies
-
-```
-npm install
-```
-
-- Install React(Client Side) Dependencies
-
-```
-cd client
-
-npm install
-```
-
 - Add **variables.env** to the project root
 
   - example: variables.env
@@ -42,10 +28,10 @@ KEY=cookiesncream
 PORT=7777
 ```
 
-- Seed the database with sample data
+- Install dependencies and seed the database with sample data
 
 ```
-npm run load-sample-data
+npm run build
 ```
 
 - Run the development servers

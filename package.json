@@ -10,6 +10,7 @@
     "watch": "nodemon ./server.js --ignore public/",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run watch\" \"npm run client\"",
+    "build": "npm install && npm install --prefix client && npm run load-sample-data",
     "load-sample-data": "node ./sample-data/load.js",
     "delete-sample-data": "node ./sample-data/load.js --delete"
   },
