@@ -25,7 +25,7 @@ export default function(state = defaultState, action) {
         updatedState.socketId = socket.id;
       }
 
-      return resetMessageCount(updatedState, room.id);
+      return updateMessageCount(updatedState, room);
 
     case MESSAGE_ADD_UNREAD: {
       const { room, currentUser, read } = action.payload;
@@ -55,6 +55,7 @@ const incrementMessageCount = (state, roomId) => {
   return {
     ...updatedState,
     metaData: {
+      ...updatedState.metaData,
       [metaKey]: {
         ...updatedState.metaData[metaKey],
         unreadMessageCount: (updatedState.metaData[
@@ -69,16 +70,20 @@ const incrementMessageCount = (state, roomId) => {
 /**
  * Resets unreadMessageCount to 0 in userMeta for a given room
  */
-const resetMessageCount = (state, roomId) => {
-  const metaKey = `room_${roomId}`;
-
+const updateMessageCount = (state, room) => {
+  if (room.group === "channel") return state;
+  const metaKey = `room_${room.id}`;
+  const updatedTotalUnreadMessages =
+    state.metaData.totalUnreadMessages -
+    state.metaData[metaKey].unreadMessageCount;
   return {
     ...state,
     metaData: {
       ...state.metaData,
       [metaKey]: {
         unreadMessageCount: 0
-      }
+      },
+      totalUnreadMessages: updatedTotalUnreadMessages
     }
   };
 };
