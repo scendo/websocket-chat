@@ -1,4 +1,22 @@
-import { ROOM_OPEN, ROOM_ADD, MESSAGE_ADD, MESSAGE_ADD_UNREAD } from "./types";
+import {
+  USER_CONNECTED,
+  ROOM_OPEN,
+  ROOM_ADD,
+  MESSAGE_ADD,
+  MESSAGE_ADD_UNREAD
+} from "./types";
+
+/**
+ * A user socket client connected to the chat service
+ *
+ * @param {*} user
+ */
+export const setUserConnected = user => {
+  return {
+    type: USER_CONNECTED,
+    payload: { user }
+  };
+};
 
 /**
  * Action to initialize a chatroom/private message

@@ -13,6 +13,7 @@ import {
 } from "semantic-ui-react";
 import soa from "../utils/socketActions";
 import {
+  setUserConnected,
   openChatRoom,
   addRoom,
   addMessageToRoom,
@@ -87,6 +88,14 @@ class Chatroom extends Component {
    */
   initSocketEvents(socket) {
     if (socket) {
+      /**
+       * A user connected to the chat service.
+       * Update their status
+       */
+      socket.on("USER_CONNECTED", user => {
+        this.props.setUserConnected(user);
+      });
+
       socket.on("MESSAGE_ADDED", ({ userId, room, message }) => {
         const { currentUser, activeRoom } = this.props;
 
@@ -268,6 +277,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
+    setUserConnected,
     openChatRoom,
     addRoom,
     addMessageToRoom,
