@@ -18,16 +18,14 @@ const channelsRooms = JSON.parse(
 const directRooms = JSON.parse(
   fs.readFileSync(__dirname + "/rooms/direct.json", "utf-8")
 );
-const rooms = channelsRooms.concat(directRooms);
+const rooms = [...channelsRooms, ...directRooms];
 const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
-const usermetas = getUserMetas({ users, directRooms });
 
 if (process.argv.includes("--delete")) {
   deleteData();
 } else {
   loadData({
     users,
-    usermetas,
     rooms,
     channelsRooms,
     directRooms,

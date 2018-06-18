@@ -17,7 +17,6 @@ const { getRandomColor } = require("../utils/chat");
  */
 const loadData = async ({
   users,
-  usermetas,
   rooms,
   channelsRooms,
   directRooms,
