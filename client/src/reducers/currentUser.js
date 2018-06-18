@@ -8,6 +8,7 @@ import {
   MESSAGE_ADD,
   MESSAGE_ADD_UNREAD
 } from "../actions/types";
+import { getRoomMetaKey } from "../utils/chat";
 
 const defaultState = {};
 
@@ -51,7 +52,7 @@ export default function(state = defaultState, action) {
  * incremements unreadMessageCount in userMeta for a given room
  */
 const incrementMessageCount = (state, roomId) => {
-  const metaKey = `room_${roomId}`;
+  const metaKey = getRoomMetaKey(roomId);
 
   const updatedState = { ...state };
 
@@ -81,7 +82,7 @@ const incrementMessageCount = (state, roomId) => {
  */
 const updateMessageCount = (state, room) => {
   if (room.group === "channel") return state;
-  const metaKey = `room_${room.id}`;
+  const metaKey = getRoomMetaKey(room.id);
   const updatedTotalUnreadMessages =
     state.metaData.totalUnreadMessages -
     state.metaData[metaKey].unreadMessageCount;
