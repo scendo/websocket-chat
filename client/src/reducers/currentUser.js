@@ -26,7 +26,28 @@ export default function(state = defaultState, action) {
       }
       return updatedState;
     }
+    case ROOM_ADD: {
+      const { room } = action.payload;
 
+      if (room.group === "direct") {
+        const metaKey = getRoomMetaKey(room.id);
+
+        return {
+          ...state,
+          rooms: [...state.rooms, room.id],
+          metaData: {
+            ...state.metaData,
+            [metaKey]: {
+              unreadMessageCount: 0
+            }
+          }
+        };
+      }
+      return {
+        ...state,
+        rooms: [...state.rooms, room.id]
+      };
+    }
     case ROOM_OPEN: {
       const { room } = action.payload;
 
