@@ -24,6 +24,25 @@ export default function(state = defaultState, action) {
       const { users } = action.payload;
       return users || state;
     }
+    case ROOM_ADD: {
+      const { room } = action.payload;
+
+      const updatedUsers = room.users.reduce((obj, userId) => {
+        const user = { ...state[userId] };
+        return {
+          ...obj,
+          [userId]: {
+            ...user,
+            rooms: [...user.rooms, room.id]
+          }
+        };
+      }, {});
+
+      return {
+        ...state,
+        ...updatedUsers
+      };
+    }
     default:
       return state;
   }

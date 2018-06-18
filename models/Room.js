@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require("mongoose-mongodb-errors");
+const User = require("./User");
 const UserMeta = require("./UserMeta");
 
 const roomSchema = new Schema(
@@ -61,22 +62,33 @@ roomSchema.statics.getRooms = function(roomIds) {
 /**
  * On room save/create add a roomMeta in userMeta for each user in the room
  */
-roomSchema.pre("save", function() {
-  if (this.isNew && this.group === "direct") {
-    const roomMetaField = `room_${this._id}`;
-    const roomMetas = this.users.reduce((arr, userId) => {
+roomSchema.pre("save", async function(next) {
+  if (this.isNew) {
+    const joinRoomPromises = this.users.reduce((array, userId) => {
       return [
-        ...arr,
-        {
-          userId: userId,
-          key: roomMetaField,
-          value: {
-            unreadMessageCount: 0
-          }
-        }
+        ...array,
+        User.joinRoom(userId, this.id).catch(e => console.log(e))
       ];
     }, []);
-    UserMeta.insertMany(roomMetas).catch(e);
+    if (this.group === "direct") {
+      const roomMetaField = UserMeta.getRoomMetaKey(this.id);
+      const roomMetas = this.users.reduce((array, userId) => {
+        return [
+          ...array,
+          {
+            userId: userId,
+            key: roomMetaField,
+            value: {
+              unreadMessageCount: 0
+            }
+          }
+        ];
+      }, []);
+      UserMeta.insertMany(roomMetas).catch(e => console.log(e));
+      next();
+    }
   }
+
+  next();
 });
 module.exports = mongoose.model("Room", roomSchema);
