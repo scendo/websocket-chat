@@ -104,7 +104,10 @@ class Chatroom extends Component {
         //If client's actively in the room of the sent message, then add it to the current room
         if (activeRoom.id === room.id) {
           this.props.addMessageToRoom({ room, message });
-        } else if (currentUser.rooms.includes(room.id)) {
+        } else if (
+          room.group === "direct" &&
+          currentUser.rooms.includes(room.id)
+        ) {
           this.props.addUnreadMessage({
             room,
             currentUser
