@@ -15,6 +15,7 @@ import soa from "../utils/socketActions";
 import {
   setUserConnected,
   setUserDisconnected,
+  startChatService,
   openChatRoom,
   addRoom,
   addMessageToRoom,
@@ -76,7 +77,7 @@ class Chatroom extends Component {
       soa.startChatService(
         { socket, currentUserId: this.props.auth.user.id },
         options => {
-          this.props.openChatRoom(options);
+          this.props.startChatService(options);
         }
       );
     });
@@ -280,6 +281,7 @@ export default connect(
   {
     setUserConnected,
     setUserDisconnected,
+    startChatService,
     openChatRoom,
     addRoom,
     addMessageToRoom,

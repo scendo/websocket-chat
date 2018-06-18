@@ -1,4 +1,5 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const START_CHAT_SERVICE = "START_CHAT_SERVICE";
 
 //User
 export const USER_CONNECTED = "USER_CONNECTED";

@@ -1,6 +1,7 @@
 import {
   USER_CONNECTED,
   USER_DISCONNECTED,
+  START_CHAT_SERVICE,
   ROOM_OPEN,
   ROOM_ADD,
   MESSAGE_ADD,
@@ -39,10 +40,23 @@ export const setUserDisconnected = user => {
  * @param {Object} messages
  * @param {Object} users
  */
-export const openChatRoom = options => {
+export const startChatService = options => {
+  return {
+    type: START_CHAT_SERVICE,
+    payload: options
+  };
+};
+
+/**
+ * Action to open a room
+ *
+ * @param {Object} room
+ * @param {Object} messages
+ */
+export const openChatRoom = ({ room, messages }) => {
   return {
     type: ROOM_OPEN,
-    payload: options
+    payload: { room, messages }
   };
 };
 

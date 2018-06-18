@@ -40,7 +40,6 @@ class ChatSidebar extends Component {
           this.props.setMenuVisibility(false);
 
           const options = {
-            currentUser,
             room: activeRoom,
             messages
           };

@@ -1,9 +1,10 @@
-const {
+import {
   USER_CONNECTED,
   USER_DISCONNECTED,
-  ROOM_OPEN,
+  START_CHAT_SERVICE,
+  ROOM_ADD,
   USER_LOGGED_OUT
-} = require("../actions/types");
+} from "../actions/types";
 
 const defaultState = {};
 
@@ -19,7 +20,7 @@ export default function(state = defaultState, action) {
     }
     case USER_LOGGED_OUT:
       return {};
-    case ROOM_OPEN: {
+    case START_CHAT_SERVICE: {
       const { users } = action.payload;
       return users || state;
     }

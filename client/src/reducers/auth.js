@@ -1,8 +1,7 @@
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
-  SET_CURRENT_USER,
-  ROOM_OPEN
+  SET_CURRENT_USER
 } from "../actions/types";
 
 const defaultState = {

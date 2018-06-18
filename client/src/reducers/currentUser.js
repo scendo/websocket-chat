@@ -2,6 +2,8 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   SET_CURRENT_USER,
+  START_CHAT_SERVICE,
+  ROOM_ADD,
   ROOM_OPEN,
   MESSAGE_ADD,
   MESSAGE_ADD_UNREAD
@@ -13,19 +15,26 @@ export default function(state = defaultState, action) {
   switch (action.type) {
     case USER_LOGGED_OUT:
       return {};
-
-    case ROOM_OPEN:
+    case START_CHAT_SERVICE: {
       const { socket, currentUser, room } = action.payload;
-
       const updatedState = {
         ...currentUser
       };
-
       if (socket) {
         updatedState.socketId = socket.id;
       }
+      return updatedState;
+    }
+
+    case ROOM_OPEN: {
+      const { room } = action.payload;
+
+      const updatedState = {
+        ...state
+      };
 
       return updateMessageCount(updatedState, room);
+    }
 
     case MESSAGE_ADD_UNREAD: {
       const { room, currentUser, read } = action.payload;
