@@ -29,6 +29,15 @@ userMetaSchema.set("toJSON", {
 });
 
 /**
+ * Return the UserMeta key that holds user meta data for a given a room
+ *
+ * @param {*} roomId
+ */
+userMetaSchema.statics.getRoomMetaKey = roomId => {
+  return `room_${roomId}`;
+};
+
+/**
  * Get a userMeta value by given a userId and key
  *
  * @param {*} userId
@@ -65,7 +74,7 @@ userMetaSchema.statics.getRoomMeta = async function(
   const roomMeta = await this.findOne(
     {
       userId,
-      key: `room_${roomId}`
+      key: this.getRoomMetaKey(roomId)
     },
     {
       _id: false,
@@ -106,7 +115,7 @@ userMetaSchema.statics.incUnreadMsgCount = function(userId, roomId) {
   return this.findOneAndUpdate(
     {
       userId,
-      key: `room_${roomId}`
+      key: this.getRoomMetaKey(roomId)
     },
     { $inc: { "value.unreadMessageCount": 1 } }
   );
@@ -124,7 +133,7 @@ userMetaSchema.statics.setUnreadMessages = function(userId, roomId, count) {
   return this.findOneAndUpdate(
     {
       userId,
-      key: `room_${roomId}`
+      key: this.getRoomMetaKey(roomId)
     },
     { $set: { "value.unreadMessageCount": count } }
   );
