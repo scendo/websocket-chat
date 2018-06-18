@@ -53,3 +53,12 @@ export const setDirectMessageName = ({ room, currentUser, users }) => {
   const dmUser = users[dmUserId];
   return { ...room, name: dmUser.name };
 };
+
+/**
+ * Return the UserMeta key that holds user meta data for a given a room
+ *
+ * @param {*} roomId
+ */
+export const getRoomMetaKey = roomId => {
+  return `room_${roomId}`;
+};
