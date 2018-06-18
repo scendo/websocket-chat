@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Menu, Dropdown, Popup, Button, Icon, Label } from "semantic-ui-react";
 import soa from "../utils/socketActions";
-import { setDirectMessageName } from "../utils/chat";
+import { setDirectMessageName, getRoomMetaKey } from "../utils/chat";
 /**
  * Chatroom sidebar which acts as the main menu for the application
  *
@@ -108,8 +108,9 @@ class ChatSidebar extends Component {
           (userId, index) => userId !== currentUser.id
         );
         const user = users[userId];
-        const roomMeta = currentUser.metaData[`room_${room.id}`]
-          ? currentUser.metaData[`room_${room.id}`]
+        const roomMetaKey = getRoomMetaKey(room.id);
+        const roomMeta = currentUser.metaData[roomMetaKey]
+          ? currentUser.metaData[roomMetaKey]
           : {};
 
         return (
