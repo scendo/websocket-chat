@@ -86,7 +86,7 @@ const getUserMetas = ({ users, directRooms }) => {
         ...arr,
         {
           userId: userId,
-          key: `room_${room._id}`,
+          key: UserMeta.getRoomMetaKey(room.id),
           value: {
             unreadMessageCount: 0
           }
