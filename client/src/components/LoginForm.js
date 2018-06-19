@@ -68,15 +68,15 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="login-form">
+      <div id="login-form">
         <Grid
           textAlign="center"
           style={{ height: "100%" }}
           verticalAlign="middle"
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
-              Log-in to your account
+          <Grid.Column>
+            <Header id="login-header" as="h2" textAlign="center">
+              Websocket Chat
             </Header>
             <Message
               hidden={!this.state.errors.length > 0 ? true : false}
@@ -106,7 +106,7 @@ class LoginForm extends Component {
                   value={this.state.password}
                 />
                 <Button
-                  color="teal"
+                  className="submit-btn"
                   fluid
                   size="large"
                   onClick={this.handleSubmit}
@@ -130,4 +130,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(LoginForm);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(LoginForm);

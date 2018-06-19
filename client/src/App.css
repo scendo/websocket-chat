@@ -8,16 +8,50 @@ body {
 }
 body > div,
 body > div > div,
-body > div > div > div.login-form,
-body > div > div > div.register-form {
+body > div > div > div#login-form,
+body > div > div > div#register-form {
   height: 100%;
 }
-
+.ui.grid.center.middle {
+  margin: 0;
+}
+#login-form {
+  background-color: #05182c;
+}
 /* Login/Register From */
-.login-form .ui.error.message,
-.register-form .ui.error.message {
+#login-form .ui.error.message,
+#register-form .ui.error.message {
   padding: 5% 15%;
 }
+#login-form .ui .column,
+#register-form .ui .column {
+  max-width: 450px;
+}
+
+#login-header,
+#register-header {
+  color: #fff;
+}
+#login-form .submit-btn,
+#register-form .submit-btn {
+  color: #fff;
+  background-color: #0599af;
+}
+
+@media only screen and (max-device-width: 480px) {
+  #login-form .ui .column,
+  #register-form .ui .column {
+    max-width: 70%;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 786px) {
+  #login-form .ui .column,
+  #register-form .ui .column {
+    max-width: 50%;
+  }
+}
+
 #chat-menu,
 #chat-menu.ui.menu > .item:first-child,
 #chat-menu.ui.menu #user-settings-menu {
