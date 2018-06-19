@@ -70,14 +70,14 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <div className="register-form">
+      <div id="register-form">
         <Grid
           textAlign="center"
           style={{ height: "100%" }}
           verticalAlign="middle"
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+          <Grid.Column>
+            <Header id="register-header" as="h2" textAlign="center">
               {" "}
               Register
             </Header>
@@ -128,7 +128,7 @@ class RegisterForm extends Component {
                   type="password"
                 />
                 <Button
-                  color="teal"
+                  className="submit-btn"
                   fluid
                   size="large"
                   onClick={this.handleSubmit}
@@ -147,4 +147,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(RegisterForm);
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(RegisterForm);
