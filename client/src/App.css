@@ -15,7 +15,8 @@ body > div > div > div#register-form {
 .ui.grid.center.middle {
   margin: 0;
 }
-#login-form {
+#login-form,
+#register-form {
   background-color: #05182c;
 }
 /* Login/Register From */
