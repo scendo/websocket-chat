@@ -75,10 +75,10 @@ body > div > div > div#register-form {
 #chat-menu.ui.menu #user-settings-menu .dropdown.icon {
   margin: 0 0 0 1em;
 }
-/* #chatroom .ui.menu {
+#chatroom .ui.menu {
   margin: 0 !important;
   border-radius: 0;
-} */
+}
 #chatroom .ui.menu .item > i.icon {
   margin: 0;
 }
