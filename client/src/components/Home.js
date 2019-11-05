@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  Button,
-  Header,
-  Image,
-  Icon
-} from "semantic-ui-react";
+import { Button, Header, Image, Icon } from "semantic-ui-react";
 import Page from "./Page";
+import Brand from "./Brand";
 import previewImage from "../preview.png";
 
 const Home = () => {
@@ -13,10 +9,7 @@ const Home = () => {
     <Page>
       <div id="home">
         <div>
-          <Header id="home-header" as="h1" textAlign="center">
-            <Icon name="comments" />
-            CONVOLINK
-          </Header>
+          <Brand />
           <div id="sub-header" as="h4" textAlign="center">
             Who needs video? Join the the conversation today.
           </div>
