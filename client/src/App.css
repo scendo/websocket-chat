@@ -57,10 +57,6 @@ body > div > div > div#register-form {
   color: #e0e1e2;
 }
 
-#login-form,
-#register-form {
-  background-color: #05182c;
-}
 /* Login/Register From */
 #login-form .ui.error.message,
 #register-form .ui.error.message {
@@ -71,14 +67,14 @@ body > div > div > div#register-form {
   max-width: 450px;
 }
 
-#login-header,
-#register-header {
-  color: #fff;
+#login-form .brand,
+#register-form .brand {
+  padding: 25px 0;
 }
 #login-form .submit-btn,
 #register-form .submit-btn {
   color: #fff;
-  background-color: #0599af;
+  background-color: #18184a;
 }
 
 @media only screen and (max-device-width: 480px) {

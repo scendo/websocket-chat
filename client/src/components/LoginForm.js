@@ -4,11 +4,12 @@ import {
   Button,
   Form,
   Grid,
-  Header,
   Message,
   Segment
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Page from "./Page";
+import Brand from "./Brand";
 import { loginUser } from "../actions/auth";
 
 class LoginForm extends Component {
@@ -68,59 +69,59 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div id="login-form">
-        <Grid
-          textAlign="center"
-          style={{ height: "100%" }}
-          verticalAlign="middle"
-        >
-          <Grid.Column>
-            <Header id="login-header" as="h2" textAlign="center">
-              Websocket Chat
-            </Header>
-            <Message
-              hidden={!this.state.errors.length > 0 ? true : false}
-              error
-              header="There was an error with your submission"
-              list={this.state.errors}
-            />
-            <Form size="large">
-              <Segment stacked>
-                <Form.Input
-                  name="email"
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  placeholder="E-mail address"
-                  onChange={this.handleInputChange}
-                  value={this.state.email}
-                />
-                <Form.Input
-                  name="password"
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                  onChange={this.handleInputChange}
-                  value={this.state.password}
-                />
-                <Button
-                  className="submit-btn"
-                  fluid
-                  size="large"
-                  onClick={this.handleSubmit}
-                >
-                  Login
-                </Button>
-              </Segment>
-            </Form>
-            <Message>
-              New to us? <Link to="/register">Sign Up</Link>
-            </Message>
-          </Grid.Column>
-        </Grid>
-      </div>
+      <Page>
+        <div id="login-form">
+          <Grid
+            textAlign="center"
+            style={{ height: "100%" }}
+            verticalAlign="middle"
+          >
+            <Grid.Column>
+              <Brand />
+              <Message
+                hidden={!this.state.errors.length > 0 ? true : false}
+                error
+                header="There was an error with your submission"
+                list={this.state.errors}
+              />
+              <Form size="large">
+                <Segment stacked>
+                  <Form.Input
+                    name="email"
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    placeholder="E-mail address"
+                    onChange={this.handleInputChange}
+                    value={this.state.email}
+                  />
+                  <Form.Input
+                    name="password"
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                    onChange={this.handleInputChange}
+                    value={this.state.password}
+                  />
+                  <Button
+                    className="submit-btn"
+                    fluid
+                    size="large"
+                    onClick={this.handleSubmit}
+                  >
+                    LOGIN
+                  </Button>
+                </Segment>
+              </Form>
+              <Message>
+                New to us? <Link to="/signup">Sign Up</Link>
+              </Message>
+            </Grid.Column>
+          </Grid>
+        </div>
+      </Page>
     );
   }
 }

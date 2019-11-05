@@ -8,6 +8,8 @@ import {
   Segment,
   Message
 } from "semantic-ui-react";
+import Page from "./Page";
+import Brand from "./Brand";
 import { registerUser } from "../actions/auth";
 
 class RegisterForm extends Component {
@@ -70,76 +72,75 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <div id="register-form">
-        <Grid
-          textAlign="center"
-          style={{ height: "100%" }}
-          verticalAlign="middle"
-        >
-          <Grid.Column>
-            <Header id="register-header" as="h2" textAlign="center">
-              {" "}
-              Register
-            </Header>
-            <Message
-              hidden={!this.state.errors.length > 0 ? true : false}
-              error
-              header="There was an error with your submission"
-              list={this.state.errors}
-            />
-            <Form size="large">
-              <Segment stacked>
-                <Form.Input
-                  name="name"
-                  onChange={this.handleInputChange}
-                  value={this.state.name}
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  placeholder="Name"
-                />
-                <Form.Input
-                  name="email"
-                  onChange={this.handleInputChange}
-                  value={this.state.email}
-                  fluid
-                  icon="mail"
-                  iconPosition="left"
-                  placeholder="E-mail address"
-                />
-                <Form.Input
-                  name="password"
-                  onChange={this.handleInputChange}
-                  value={this.state.password}
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                />
-                <Form.Input
-                  name="passwordconfirm"
-                  onChange={this.handleInputChange}
-                  value={this.state.passwordconfirm}
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Confirm Password"
-                  type="password"
-                />
-                <Button
-                  className="submit-btn"
-                  fluid
-                  size="large"
-                  onClick={this.handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Segment>
-            </Form>
-          </Grid.Column>
-        </Grid>
-      </div>
+      <Page>
+        <div id="register-form">
+          <Grid
+            textAlign="center"
+            style={{ height: "100%" }}
+            verticalAlign="middle"
+          >
+            <Grid.Column>
+              <Brand />
+              <Message
+                hidden={!this.state.errors.length > 0 ? true : false}
+                error
+                header="There was an error with your submission"
+                list={this.state.errors}
+              />
+              <Form size="large">
+                <Segment stacked>
+                  <Form.Input
+                    name="name"
+                    onChange={this.handleInputChange}
+                    value={this.state.name}
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    placeholder="Name"
+                  />
+                  <Form.Input
+                    name="email"
+                    onChange={this.handleInputChange}
+                    value={this.state.email}
+                    fluid
+                    icon="mail"
+                    iconPosition="left"
+                    placeholder="E-mail address"
+                  />
+                  <Form.Input
+                    name="password"
+                    onChange={this.handleInputChange}
+                    value={this.state.password}
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                  />
+                  <Form.Input
+                    name="passwordconfirm"
+                    onChange={this.handleInputChange}
+                    value={this.state.passwordconfirm}
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Confirm Password"
+                    type="password"
+                  />
+                  <Button
+                    className="submit-btn"
+                    fluid
+                    size="large"
+                    onClick={this.handleSubmit}
+                  >
+                    SIGN UP
+                  </Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </div>
+      </Page>
     );
   }
 }
