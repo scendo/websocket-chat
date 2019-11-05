@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
 //Component
+import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import ChatRoom from "./components/ChatRoom";
@@ -38,8 +39,9 @@ class App extends Component {
         <Router history={history}>
           <div className="App">
             <Switch>
-              <Route exact path="/" component={LoginForm} />
-              <Route exact path="/register" component={RegisterForm} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={LoginForm} />
+              <Route exact path="/signup" component={RegisterForm} />
               <PrivateRoute
                 exact
                 path="/chatroom"
