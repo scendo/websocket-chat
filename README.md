@@ -1,4 +1,4 @@
-# Websocket Chat
+# Convolink
 
 A websocket chat application built with socket.io, React.js, Express.js, Node.js and MongoDB.
 
