@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const Brand = () => (
   <Link to="/">
-    <Header className="brand" as="h1" textAlign="center">
+    <h1 className="brand">
       <Icon name="comments" />
       CONVOLINK
-    </Header>
+    </h1>
   </Link>
 );
 

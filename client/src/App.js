@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 import "semantic-ui-css/semantic.min.css";
+import "./App.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import createHistory from "history/createBrowserHistory";

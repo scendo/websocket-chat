@@ -1,35 +1,49 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 body {
-  font-family: 13px Work Sans, Helvetica, Arial;
+  font-family: Work Sans, Helvetica, Arial;
+  box-sizing: border-box;
+  line-height: 1.7;
 }
-body > div,
-body > div > div,
-body > div > div > div#login-form,
-body > div > div > div#register-form {
+
+#root,
+#root .App {
+  height: 100%;
+}
+
+#root #login-form,
+#root #register-form {
   height: 100%;
 }
 .ui.grid.center.middle {
   margin: 0;
 }
 #page {
-  background-color: #282869;
   height: 100%;
   padding: 100px 20px;
+  background-color: #282869;
 }
 #page .brand {
+  display: flex;
+  justify-content: center;
   color: #fff;
 }
-#home > div:first-child {
-  padding: 50px 0;
-}
-#home > div:last-child {
+#home {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 100%;
 }
 #home-header {
   color: #fff;
@@ -42,10 +56,13 @@ body > div > div > div#register-form {
   text-align: center;
   color: #909090;
 }
+#home img {
+  width: 100%;
+  margin-top: 20px;
+}
 #home-actions {
   display: flex;
   justify-content: center;
-  margin-top: 75px;
 }
 #home-actions .home-btns {
   text-align: center;
@@ -77,17 +94,46 @@ body > div > div > div#register-form {
   background-color: #18184a;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
+  #page{
+    padding: 50px 15px;
+  }
+  #home #sub-header{
+    font-size: 14px;
+  }
+  #home-actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  #home-actions .ui.right.attached.button,
+  #home-actions .ui.left.attached.button {
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 5px;
+  }
+  #home-actions .home-btns {
+    text-align: center;
+    width: 100%;
+    border: 1px solid #e0e1e2;
+  }
+  #home-actions .signup-btn {
+    margin-top: 10px;
+  }
   #login-form .ui .column,
   #register-form .ui .column {
     max-width: 70%;
   }
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 786px) {
+@media only screen and (min-width: 481px) and (max-width: 786px) {
+  #home img.ui.image {
+    max-width: 90%;
+  }
   #login-form .ui .column,
   #register-form .ui .column {
-    max-width: 50%;
+    max-width: 95%;
   }
 }
 

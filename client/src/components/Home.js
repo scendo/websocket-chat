@@ -13,29 +13,24 @@ const Home = () => {
           <div id="sub-header" as="h4" textAlign="center">
             Who needs video? Join the the conversation today.
           </div>
+          <img src={previewImage} />
         </div>
-        <div>
-          <Image src={previewImage} />
-          <div id="home-actions">
-            <a href="/login">
-              <Button
-                className="home-btns submit-btn"
-                attached="left"
-                size="Big"
-              >
-                LOGIN
-              </Button>
-            </a>
-            <a href="/signup">
-              <Button
-                className="home-btns signup-btn"
-                attached="right"
-                size="Big"
-              >
-                SIGN UP
-              </Button>
-            </a>
-          </div>
+
+        <div id="home-actions">
+          <a href="/login">
+            <Button className="home-btns submit-btn" attached="left" size="Big">
+              LOGIN
+            </Button>
+          </a>
+          <a href="/signup">
+            <Button
+              className="home-btns signup-btn"
+              attached="right"
+              size="Big"
+            >
+              SIGN UP
+            </Button>
+          </a>
         </div>
       </div>
     </Page>
